@@ -1,0 +1,4 @@
+comic-books
+
+HTTPS	: https://github.com/cornerstonecollege/comic-books.git
+WEB		: http://cornerstonecollege.github.io/comic-books
