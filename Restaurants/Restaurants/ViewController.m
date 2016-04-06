@@ -46,5 +46,13 @@
     }
 }
 
+- (void)createReviewArea
+{
+    for (int i=0; i<3; i++) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:[SizeHelper imageSizeWithIndex:i]];
+        [imageView setImage:[UIImage imageNamed:@"gray_star"]];
+        [self.view addSubview:imageView];
+    }
+}
 
 @end
