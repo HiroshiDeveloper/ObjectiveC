@@ -40,8 +40,8 @@
 +(CGRect)reviewSizeWithIndex:(int)index
 {
     CGFloat imageSize = [UIScreen mainScreen].bounds.size.width * 0.1;
-    CGFloat startWidth = [UIScreen mainScreen].bounds.size.height * 0.65;
-    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.1;
+    CGFloat startWidth = [UIScreen mainScreen].bounds.size.width * 0.65;
+    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.08;
     CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
     
     switch (index) {
@@ -55,6 +55,20 @@
             return CGRectMake(startWidth + margin * 2 + imageSize * 2, startHeight, imageSize, imageSize);
             break;
     }
+}
+
++(CGRect)plusLabelSize
+{
+    CGFloat plusLabelSize = [UIScreen mainScreen].bounds.size.width * 0.15;
+    return CGRectMake(0, 0, plusLabelSize, plusLabelSize);
+}
+
++(CGRect)listButtonSize
+{
+    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.8,
+                      [UIScreen mainScreen].bounds.size.height * 0.15,
+                      [UIScreen mainScreen].bounds.size.width * 0.15,
+                      [UIScreen mainScreen].bounds.size.width * 0.1);
 }
 
 

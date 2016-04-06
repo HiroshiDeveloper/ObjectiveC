@@ -15,5 +15,8 @@
 
 +(CGRect) googleMapSize;
 +(CGRect)imageSizeWithIndex:(int)index;
++(CGRect)reviewSizeWithIndex:(int)index;
++(CGRect)plusLabelSize;
++(CGRect)listButtonSize;
 
 @end

@@ -22,6 +22,8 @@
     [super viewDidLoad];
     [self createGoogleMapView];
     [self createPicArea];
+    [self createReviewArea];
+    [self createListButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +44,10 @@
     for (int i=0; i<3; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:[SizeHelper imageSizeWithIndex:i]];
         imageView.backgroundColor = [ColorHelper lightBlueColor];
+        
+        UILabel *plusLabel = [self createPlusLabel];
+        
+        [imageView addSubview:plusLabel];
         [self.view addSubview:imageView];
     }
 }
@@ -49,10 +55,26 @@
 - (void)createReviewArea
 {
     for (int i=0; i<3; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:[SizeHelper imageSizeWithIndex:i]];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:[SizeHelper reviewSizeWithIndex:i]];
         [imageView setImage:[UIImage imageNamed:@"gray_star"]];
         [self.view addSubview:imageView];
     }
 }
+
+- (UILabel*)createPlusLabel
+{
+    UILabel *plusLabel = [[UILabel alloc] initWithFrame:[SizeHelper plusLabelSize]];
+    plusLabel.text = @"+";
+    plusLabel.font=[UIFont fontWithName:@"Helvetica" size:50];
+    plusLabel.textColor = [UIColor blackColor];
+    return plusLabel;
+}
+
+- (void)createListButton
+{
+    UIButton *listButton = [[UIButton alloc] initWithFrame:[SizeHelper listButtonSize]];
+    [self.view addSubview:listButton];
+}
+
 
 @end
