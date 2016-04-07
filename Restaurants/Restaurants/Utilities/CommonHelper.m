@@ -33,9 +33,9 @@
     return self;
 }
 
-- (UIView *) makeViewWithFrame:(CGRect)size
+- (MKMapView *) makeViewWithFrame:(CGRect)size
 {
-    return [[UIView alloc] initWithFrame:size];
+    return [[MKMapView alloc] initWithFrame:size];
 }
 
 @end

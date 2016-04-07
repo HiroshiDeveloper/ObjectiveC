@@ -10,6 +10,7 @@
 		6809867F1CB46D77004DDE2A /* SizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809867E1CB46D77004DDE2A /* SizeHelper.m */; };
 		680986821CB46DE8004DDE2A /* CommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 680986811CB46DE8004DDE2A /* CommonHelper.m */; };
 		680986861CB47AAF004DDE2A /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 680986851CB47AAF004DDE2A /* ColorHelper.m */; };
+		685C4F621CB5D4D000B16346 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685C4F611CB5D4D000B16346 /* MapKit.framework */; };
 		686C3F3C1CB34A45006418E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 686C3F3B1CB34A45006418E7 /* main.m */; };
 		686C3F3F1CB34A45006418E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 686C3F3E1CB34A45006418E7 /* AppDelegate.m */; };
 		686C3F421CB34A45006418E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686C3F411CB34A45006418E7 /* ViewController.m */; };
@@ -26,6 +27,7 @@
 		680986831CB46FBB004DDE2A /* Restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		680986841CB47AAF004DDE2A /* ColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorHelper.h; path = Utilities/ColorHelper.h; sourceTree = "<group>"; };
 		680986851CB47AAF004DDE2A /* ColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorHelper.m; path = Utilities/ColorHelper.m; sourceTree = "<group>"; };
+		685C4F611CB5D4D000B16346 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		686C3F3B1CB34A45006418E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		686C3F3D1CB34A45006418E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		686C3F3E1CB34A45006418E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				685C4F621CB5D4D000B16346 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +67,7 @@
 		686C3F2E1CB34A44006418E7 = {
 			isa = PBXGroup;
 			children = (
+				685C4F611CB5D4D000B16346 /* MapKit.framework */,
 				686C3F391CB34A45006418E7 /* Restaurants */,
 				680986831CB46FBB004DDE2A /* Restaurants.app */,
 			);

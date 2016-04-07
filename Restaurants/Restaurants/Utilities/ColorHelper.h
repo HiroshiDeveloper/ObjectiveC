@@ -12,5 +12,7 @@
 
 + (UIColor *) lightGreenColor;
 + (UIColor *) lightBlueColor;
++ (UIColor *) grayColor;
++ (UIColor *) lightGrayColor;
 
 @end

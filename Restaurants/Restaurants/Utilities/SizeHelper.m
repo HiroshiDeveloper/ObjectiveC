@@ -10,21 +10,29 @@
 
 @implementation SizeHelper
 
++(CGRect)barSize
+{
+    return CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.1);
+}
+
 +(CGRect)googleMapSize
 {
-    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.01,
-                      [UIScreen mainScreen].bounds.size.height * 0.15,
+    CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
+    CGFloat startHeight = margin * 3 + [UIScreen mainScreen].bounds.size.height * 0.1 + [UIScreen mainScreen].bounds.size.width * 0.2 + [UIScreen mainScreen].bounds.size.height * 0.1;
+    return CGRectMake(margin,
+                      startHeight,
                       [UIScreen mainScreen].bounds.size.width * 0.98,
-                      [UIScreen mainScreen].bounds.size.height * 0.7);
+                      [UIScreen mainScreen].bounds.size.height - startHeight - margin);
 }
 
 +(CGRect)imageSizeWithIndex:(int)index
 {
     CGFloat imageSize = [UIScreen mainScreen].bounds.size.width * 0.2;
-    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.03;
     CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
+    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.1 + margin;
     
-    switch (index) {
+    switch (index)
+    {
         case 0:
             return CGRectMake(margin, startHeight, imageSize, imageSize);
             break;
@@ -41,10 +49,11 @@
 {
     CGFloat imageSize = [UIScreen mainScreen].bounds.size.width * 0.1;
     CGFloat startWidth = [UIScreen mainScreen].bounds.size.width * 0.65;
-    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.08;
+    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.13;
     CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
     
-    switch (index) {
+    switch (index)
+    {
         case 0:
             return CGRectMake(startWidth, startHeight, imageSize, imageSize);
             break;
@@ -71,5 +80,12 @@
                       [UIScreen mainScreen].bounds.size.width * 0.1);
 }
 
++(CGRect)commentSize
+{
+    CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
+    CGFloat startHeight = margin * 2 + [UIScreen mainScreen].bounds.size.height * 0.1 + [UIScreen mainScreen].bounds.size.width * 0.2;
+    
+    return CGRectMake(margin, startHeight, [UIScreen mainScreen].bounds.size.width * 0.98, [UIScreen mainScreen].bounds.size.height * 0.1);
+}
 
 @end

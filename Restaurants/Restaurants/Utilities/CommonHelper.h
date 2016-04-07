@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface CommonHelper : NSObject
 
 + (instancetype) sharedInstance;
-- (UIView *) makeViewWithFrame:(CGRect)size;
+- (MKMapView *) makeViewWithFrame:(CGRect)size;
 
 @end

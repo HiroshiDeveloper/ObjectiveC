@@ -18,5 +18,7 @@
 +(CGRect)reviewSizeWithIndex:(int)index;
 +(CGRect)plusLabelSize;
 +(CGRect)listButtonSize;
++(CGRect)barSize;
++(CGRect)commentSize;
 
 @end
