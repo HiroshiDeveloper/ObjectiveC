@@ -10,58 +10,75 @@
 
 @implementation SizeHelper
 
-+(CGRect)barSize
++ (CGFloat)margin
+{
+    return [UIScreen mainScreen].bounds.size.width * 0.01;
+}
+
++ (CGFloat)imgMapStartHeight
+{
+    return [UIScreen mainScreen].bounds.size.height * 0.1 + [self margin];
+}
+
++ (CGFloat)reviewImgSize
+{
+    return [UIScreen mainScreen].bounds.size.width * 0.1;
+}
+
++ (CGFloat)picImgSize
+{
+    return [UIScreen mainScreen].bounds.size.width * 0.2;
+}
+
++ (CGFloat)labelSize
+{
+    return [UIScreen mainScreen].bounds.size.height * 0.05;
+}
+
++ (CGRect)barSize
 {
     return CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.1);
 }
 
-+(CGRect)googleMapSize
++ (CGRect)googleMapSize
 {
-    CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
-    CGFloat startHeight = margin * 3 + [UIScreen mainScreen].bounds.size.height * 0.1 + [UIScreen mainScreen].bounds.size.width * 0.2 + [UIScreen mainScreen].bounds.size.height * 0.1;
-    return CGRectMake(margin,
-                      startHeight,
+    return CGRectMake([self margin],
+                      [self imgMapStartHeight],
                       [UIScreen mainScreen].bounds.size.width * 0.98,
-                      [UIScreen mainScreen].bounds.size.height - startHeight - margin);
+                      [UIScreen mainScreen].bounds.size.height - [self imgMapStartHeight] - [self margin]);
 }
 
 +(CGRect)imageSizeWithIndex:(int)index
 {
-    CGFloat imageSize = [UIScreen mainScreen].bounds.size.width * 0.2;
-    CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
-    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.1 + margin;
-    
     switch (index)
     {
         case 0:
-            return CGRectMake(margin, startHeight, imageSize, imageSize);
+            return CGRectMake([self margin], [self imgMapStartHeight], [self picImgSize], [self picImgSize]);
             break;
         case 1:
-            return CGRectMake(margin * 2 + imageSize, startHeight, imageSize, imageSize);
+            return CGRectMake([self margin] * 2 + [self picImgSize], [self imgMapStartHeight], [self picImgSize], [self picImgSize]);
             break;
         default:
-            return CGRectMake(margin * 3 + imageSize * 2, startHeight, imageSize, imageSize);
+            return CGRectMake([self margin] * 3 + [self picImgSize] * 2, [self imgMapStartHeight], [self picImgSize], [self picImgSize]);
             break;
     }
 }
 
 +(CGRect)reviewSizeWithIndex:(int)index
 {
-    CGFloat imageSize = [UIScreen mainScreen].bounds.size.width * 0.1;
     CGFloat startWidth = [UIScreen mainScreen].bounds.size.width * 0.65;
-    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.13;
-    CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
+    CGFloat startHeight = [self imgMapStartHeight] + [self picImgSize] - [self reviewImgSize];
     
     switch (index)
     {
         case 0:
-            return CGRectMake(startWidth, startHeight, imageSize, imageSize);
+            return CGRectMake(startWidth, startHeight, [self reviewImgSize], [self reviewImgSize]);
             break;
         case 1:
-            return CGRectMake(startWidth + margin + imageSize, startHeight, imageSize, imageSize);
+            return CGRectMake(startWidth + [self margin] + [self reviewImgSize], startHeight, [self reviewImgSize], [self reviewImgSize]);
             break;
         default:
-            return CGRectMake(startWidth + margin * 2 + imageSize * 2, startHeight, imageSize, imageSize);
+            return CGRectMake(startWidth + [self margin] * 2 + [self reviewImgSize] * 2, startHeight, [self reviewImgSize], [self reviewImgSize]);
             break;
     }
 }
@@ -72,20 +89,42 @@
     return CGRectMake(0, 0, plusLabelSize, plusLabelSize);
 }
 
-+(CGRect)listButtonSize
-{
-    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.8,
-                      [UIScreen mainScreen].bounds.size.height * 0.15,
-                      [UIScreen mainScreen].bounds.size.width * 0.15,
-                      [UIScreen mainScreen].bounds.size.width * 0.1);
-}
-
 +(CGRect)commentSize
 {
-    CGFloat margin = [UIScreen mainScreen].bounds.size.width * 0.01;
-    CGFloat startHeight = margin * 2 + [UIScreen mainScreen].bounds.size.height * 0.1 + [UIScreen mainScreen].bounds.size.width * 0.2;
+    CGFloat startHeight = [self imgMapStartHeight] + [self picImgSize] + [self margin] * 2 + [self labelSize];
     
-    return CGRectMake(margin, startHeight, [UIScreen mainScreen].bounds.size.width * 0.98, [UIScreen mainScreen].bounds.size.height * 0.1);
+    return CGRectMake([self margin], startHeight, [UIScreen mainScreen].bounds.size.width * 0.98, [self labelSize]);
+}
+
++(CGRect)nameLabelSize
+{
+    CGFloat startHeight = [self imgMapStartHeight] + [self picImgSize] + [self margin];
+    
+    return CGRectMake([self margin], startHeight, [UIScreen mainScreen].bounds.size.width * 0.98, [self labelSize]);
+}
+
++ (CGRect)confirmView
+{
+    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.2,
+                      [UIScreen mainScreen].bounds.size.height * 0.4,
+                      [UIScreen mainScreen].bounds.size.width * 0.6,
+                      [UIScreen mainScreen].bounds.size.height * 0.3);
+}
+
++ (CGRect)confirmLabelWithParent:(UIView *)parent
+{
+    return CGRectMake(parent.bounds.size.width * 0.1,
+                      parent.bounds.size.height * 0.1,
+                      parent.bounds.size.width,
+                      parent.bounds.size.height * 0.2);
+}
+
++ (CGRect)explainLabelWithParent:(UIView *)parent
+{
+    return CGRectMake(parent.bounds.size.width * 0.4,
+                      parent.bounds.size.height * 0.1,
+                      parent.bounds.size.width,
+                      parent.bounds.size.height * 0.3);
 }
 
 @end

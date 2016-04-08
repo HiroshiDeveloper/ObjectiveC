@@ -11,15 +11,22 @@
 #import "SizeHelper.h"
 #import "ColorHelper.h"
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+@import GoogleMaps;
 
-@interface ViewController () <CLLocationManagerDelegate>
+@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UITextViewDelegate>
 
 @property (nonatomic) NSMutableArray<UIImageView *> *reviewArr;
 @property (nonatomic) NSMutableArray<UIImageView *> *imageArr;
 @property (nonatomic) MKMapView *map;
 @property (nonatomic) CLLocationManager *locationManager;
-@property (nonatomic) BOOL cameraFlg;
+@property (nonatomic) CLLocation *location;
+@property (nonatomic) UILabel *nameLabel;
 @property (nonatomic) NSInteger imgFlg;
+@property (nonatomic) GMSPlacesClient *placesClient;
+@property (nonatomic) GMSPlacePicker *placePicker;
+@property (nonatomic) BOOL cameraFlg;
+@property (nonatomic) BOOL hasStarted;
 
 @end
 
@@ -33,6 +40,7 @@
     [self createReviewArea];
     [self createListButton];
     [self createBar];
+    [self createNameArea];
     [self createCommentArea];
 }
 
@@ -44,8 +52,9 @@
 
 - (void)createGoogleMapView
 {
+    
     self.map = [[CommonHelper sharedInstance] makeViewWithFrame:[SizeHelper googleMapSize]];
-    self.map.backgroundColor = [ColorHelper lightGreenColor];
+    self.map.delegate = self;
     [self.view addSubview:self.map];
     [self requestAuthorization];
 }
@@ -65,15 +74,21 @@
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.delegate = self;
         [self.locationManager startUpdatingLocation];
+        [self.map setShowsUserLocation:YES];
+        self.placesClient = [[GMSPlacesClient alloc] init];
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-    CLLocation *location = [locations lastObject];
-    [self.map.userLocation setCoordinate:location.coordinate];
-    [self.map setShowsUserLocation:YES];
-    [self setRegionInMap];
+    self.location = [locations lastObject];
+    if (!self.hasStarted)
+    {
+        [self.map.userLocation setCoordinate:self.location.coordinate];
+        [self setRegionInMap];
+        self.hasStarted = true;
+        [self getLocationNameWithLocation];
+    }
 }
 
 - (void)setRegionInMap
@@ -82,14 +97,43 @@
     [self.map setRegion:region animated:YES];
 }
 
+- (void)getLocationNameWithLocation
+{
+    CLLocationCoordinate2D center = self.location.coordinate;
+    CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(center.latitude + 0.001,
+                                                                  center.longitude + 0.001);
+    CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(center.latitude - 0.001,
+                                                                  center.longitude - 0.001);
+    GMSCoordinateBounds *viewport = [[GMSCoordinateBounds alloc] initWithCoordinate:northEast
+                                                                         coordinate:southWest];
+    GMSPlacePickerConfig *config = [[GMSPlacePickerConfig alloc] initWithViewport:viewport];
+    self.placePicker = [[GMSPlacePicker alloc] initWithConfig:config];
+    
+    [self.placePicker pickPlaceWithCallback:^(GMSPlace *place, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Pick Place error %@", [error localizedDescription]);
+            return;
+        }
+        
+        if (place != nil) {
+            self.nameLabel.text = place.name;
+            self.nameLabel.textColor = [UIColor blackColor];
+            NSLog(@"%@",[[place.formattedAddress
+                                       componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]);
+        } else {
+            NSLog(@"No place selected");
+        }
+    }];
+}
+
 - (void)createPicArea
 {
-    self.reviewArr = [NSMutableArray array];
+    self.imageArr = [NSMutableArray array];
     for (int i=0; i<3; i++)
     {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:[SizeHelper imageSizeWithIndex:i]];
         [imageView setImage:[UIImage imageNamed:@"gallery"]];
-        imageView.backgroundColor = [ColorHelper lightGrayColor];
+        imageView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.5f];
         imageView.tag = i;
         
         UILabel *plusLabel = [self createPlusLabel];
@@ -98,6 +142,10 @@
         [self.imageArr addObject:imageView];
         [imageView addSubview:plusLabel];
         [self.view addSubview:imageView];
+        
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(plusLabelTap:)];
+        [imageView addGestureRecognizer:tapGesture];
     }
 }
 
@@ -125,9 +173,6 @@
     plusLabel.font=[UIFont fontWithName:@"Helvetica" size:50];
     plusLabel.textColor = [ColorHelper grayColor];
     [plusLabel sizeToFit];
-    plusLabel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(plusLabelTap:)];
-    [plusLabel addGestureRecognizer:tapGesture];
     return plusLabel;
 }
 
@@ -148,12 +193,50 @@
     [self.view addSubview:listButton];
 }
 
+- (void)createNameArea
+{
+    self.nameLabel = [[UILabel alloc] initWithFrame:[SizeHelper nameLabelSize]];
+    self.nameLabel.text = @"Select your favorite restaurant!";
+    self.nameLabel.textColor = [UIColor lightGrayColor];
+    [self.view addSubview:self.nameLabel];
+}
+
 - (void)createCommentArea
 {
     UITextView *textView = [[UITextView alloc] initWithFrame:[SizeHelper commentSize]];
-    textView.backgroundColor = [ColorHelper lightGrayColor];
+    textView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.5f];
     textView.returnKeyType = UIReturnKeyDone;
+    textView.delegate = self;
+    textView.text = @"What's your comments for the restaurant? Type here!";
+    textView.textColor = [UIColor lightGrayColor];
     [self.view addSubview:textView];
+}
+
+- (BOOL) textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"What's your comments for the restaurant? Type here!"]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"What's your comments for the restaurant? Type here!";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
 }
 
 - (void)createBar
@@ -165,11 +248,13 @@
     
     UIBarButtonItem *bookmarkItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkItemPressed:)];
     
-    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneItemPressed:)];
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemPressed)];
+    
+    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveItemPressed)];
     
     UINavigationItem *item = [[UINavigationItem alloc] init];
-    [item setLeftBarButtonItems:[NSArray arrayWithObjects:cameraItem, bookmarkItem, nil]];
-    item.rightBarButtonItem = doneItem;
+    [item setLeftBarButtonItems:[NSArray arrayWithObjects:cameraItem, searchItem, bookmarkItem]];
+    item.rightBarButtonItem = saveItem;
     
     navBar.items = [NSArray arrayWithObject:item];
     
@@ -197,8 +282,13 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
+- (void)searchItemPressed
+{
+    [self getLocationNameWithLocation];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     if (self.cameraFlg) {
         UIImageWriteToSavedPhotosAlbum(chosenImage,nil,nil,nil);
@@ -208,7 +298,23 @@
         self.imageArr[self.imgFlg].image = chosenImage;
     }
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)saveItemPressed
+{
+    UIView *confirmView = [[UIView alloc] initWithFrame:[SizeHelper confirmView]];
+    confirmView.layer.cornerRadius = 20;
+    confirmView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.95f];
     
+    UILabel *confirmLabel = [[UILabel alloc] initWithFrame:[SizeHelper confirmLabelWithParent:confirmView]];
+    confirmLabel.text = @"Confirm";
+    
+    UILabel *explainLabel = [[UILabel alloc] initWithFrame:[SizeHelper explainLabelWithParent:confirmView]];
+    explainLabel.text = @"Are you sure?";
+
+    [confirmView addSubview:confirmLabel];
+    [confirmView addSubview:explainLabel];
+    [self.view addSubview:confirmView];
 }
 
 

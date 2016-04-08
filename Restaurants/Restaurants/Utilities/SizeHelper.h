@@ -13,12 +13,15 @@
 #define WIDTH_SIZE_VIEW [UIScreen mainScreen].bounds.size.width;
 #define HEIGHT_SIZE_VIEW [UIScreen mainScreen].bounds.size.height;
 
-+(CGRect) googleMapSize;
-+(CGRect)imageSizeWithIndex:(int)index;
-+(CGRect)reviewSizeWithIndex:(int)index;
-+(CGRect)plusLabelSize;
-+(CGRect)listButtonSize;
-+(CGRect)barSize;
-+(CGRect)commentSize;
++ (CGRect) googleMapSize;
++ (CGRect)imageSizeWithIndex:(int)index;
++ (CGRect)reviewSizeWithIndex:(int)index;
++ (CGRect)plusLabelSize;
++ (CGRect)barSize;
++ (CGRect)commentSize;
++ (CGRect)nameLabelSize;
++ (CGRect)confirmView;
++ (CGRect)confirmLabelWithParent:(UIView *)parent;
++ (CGRect)explainLabelWithParent:(UIView *)parent;
 
 @end
