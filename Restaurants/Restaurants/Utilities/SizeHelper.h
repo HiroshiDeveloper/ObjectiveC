@@ -21,7 +21,5 @@
 + (CGRect)commentSize;
 + (CGRect)nameLabelSize;
 + (CGRect)confirmView;
-+ (CGRect)confirmLabelWithParent:(UIView *)parent;
-+ (CGRect)explainLabelWithParent:(UIView *)parent;
 
 @end

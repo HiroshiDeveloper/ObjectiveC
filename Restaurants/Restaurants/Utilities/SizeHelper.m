@@ -111,20 +111,4 @@
                       [UIScreen mainScreen].bounds.size.height * 0.3);
 }
 
-+ (CGRect)confirmLabelWithParent:(UIView *)parent
-{
-    return CGRectMake(parent.bounds.size.width * 0.1,
-                      parent.bounds.size.height * 0.1,
-                      parent.bounds.size.width,
-                      parent.bounds.size.height * 0.2);
-}
-
-+ (CGRect)explainLabelWithParent:(UIView *)parent
-{
-    return CGRectMake(parent.bounds.size.width * 0.1,
-                      parent.bounds.size.height * 0.3,
-                      parent.bounds.size.width,
-                      parent.bounds.size.height * 0.2);
-}
-
 @end

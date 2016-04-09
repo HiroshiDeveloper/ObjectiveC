@@ -22,7 +22,11 @@
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *location;
 @property (nonatomic) UILabel *nameLabel;
+@property (nonatomic) NSString *address;
+@property (nonatomic) NSString *comments;
 @property (nonatomic) NSInteger imgFlg;
+@property (nonatomic) UIView *confirmView;
+@property (nonatomic) NSMutableDictionary *information;
 @property (nonatomic) GMSPlacesClient *placesClient;
 @property (nonatomic) GMSPlacePicker *placePicker;
 @property (nonatomic) BOOL cameraFlg;
@@ -35,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setDictionary];
     [self createGoogleMapView];
     [self createPicArea];
     [self createReviewArea];
@@ -50,16 +55,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setDictionary
+{
+    self.information = [[NSMutableDictionary alloc] init];
+    [self.information setObject:@"" forKey:@"date"];
+    [self.information setObject:@"" forKey:@"name"];
+    [self.information setObject:@"" forKey:@"address"];
+    [self.information setObject:@"" forKey:@"pic1"];
+    [self.information setObject:@"" forKey:@"pic2"];
+    [self.information setObject:@"" forKey:@"pic3"];
+    [self.information setObject:@"" forKey:@"review"];
+    [self.information setObject:@"" forKey:@"comments"];
+}
+
 - (void)createGoogleMapView
 {
-    
     self.map = [[CommonHelper sharedInstance] makeViewWithFrame:[SizeHelper googleMapSize]];
     self.map.delegate = self;
     [self.view addSubview:self.map];
     [self requestAuthorization];
 }
 
-- (void) requestAuthorization
+- (void)requestAuthorization
 {
     self.locationManager = [[CLLocationManager alloc] init];
     
@@ -118,8 +135,8 @@
         if (place != nil) {
             self.nameLabel.text = place.name;
             self.nameLabel.textColor = [UIColor blackColor];
-            NSLog(@"%@",[[place.formattedAddress
-                                       componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]);
+            self.address = place.formattedAddress;
+            //NSLog(@"%@", [place.formattedAddress componentsSeparatedByString:@", "]);
         } else {
             NSLog(@"No place selected");
         }
@@ -215,6 +232,7 @@
 - (BOOL) textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
 {
     if ([text isEqualToString:@"\n"]) {
+        self.comments = textView.text;
         [textView resignFirstResponder];
         return NO;
     }
@@ -253,7 +271,7 @@
     UIBarButtonItem *saveItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveItemPressed)];
     
     UINavigationItem *item = [[UINavigationItem alloc] init];
-    [item setLeftBarButtonItems:[NSArray arrayWithObjects:cameraItem, searchItem, bookmarkItem]];
+    [item setLeftBarButtonItems:[NSArray arrayWithObjects:cameraItem, searchItem, bookmarkItem, nil]];
     item.rightBarButtonItem = saveItem;
     
     navBar.items = [NSArray arrayWithObject:item];
@@ -302,21 +320,52 @@
 
 - (void)saveItemPressed
 {
-    UIView *confirmView = [[UIView alloc] initWithFrame:[SizeHelper confirmView]];
-    confirmView.layer.cornerRadius = 20;
-    confirmView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.95f];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Confirm"
+                                                                   message:@"Are you saving the information?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
-    UILabel *confirmLabel = [[UILabel alloc] initWithFrame:[SizeHelper confirmLabelWithParent:confirmView]];
-    confirmLabel.text = @"Confirm";
+    __weak ViewController *weakSelf = self;
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action)
+    {
+        [weakSelf saveInformation];
+    }];
     
-    UILabel *explainLabel = [[UILabel alloc] initWithFrame:[SizeHelper explainLabelWithParent:confirmView]];
-    explainLabel.text = @"Are you sure?";
-
-    [confirmView addSubview:confirmLabel];
-    [confirmView addSubview:explainLabel];
-    [self.view addSubview:confirmView];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
+- (UILabel *)createLabelWithFrame:(CGRect)frame andText:(NSString *)text
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.text = text;
+    
+    return label;
+}
+
+- (void)saveInformation
+{
+    [self.information setObject:[self getCurrentDate] forKey:@"date"];
+    [self.information setObject:self.nameLabel forKey:@"name"];
+    [self.information setObject:self.address forKey:@"address"];
+    [self.information setObject:self.imageArr forKey:@"pic"];
+    [self.information setObject:self.reviewArr forKey:@"review"];
+    [self.information setObject:self.comments forKey:@"comments"];
+}
+
+- (NSString *)getCurrentDate
+{
+    NSDate *date= [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    return dateString;
+}
 
 
 @end
