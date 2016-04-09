@@ -10,6 +10,7 @@
 #import "CommonHelper.h"
 #import "SizeHelper.h"
 #import "ColorHelper.h"
+#import "BookMarkViewController.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 @import GoogleMaps;
@@ -39,12 +40,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setDictionary];
+    [self createBar];
     [self createGoogleMapView];
     [self createPicArea];
     [self createReviewArea];
     [self createListButton];
-    [self createBar];
     [self createNameArea];
     [self createCommentArea];
 }
@@ -264,7 +266,7 @@
     
     UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(cameraItemPressed)];
     
-    UIBarButtonItem *bookmarkItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkItemPressed:)];
+    UIBarButtonItem *bookmarkItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkItemPressed)];
     
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemPressed)];
     
@@ -337,7 +339,11 @@
     [alert addAction:cancelAction];
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
-    
+}
+
+- (void)bookmarkItemPressed
+{
+    [self presentViewController:[BookMarkViewController new] animated:YES completion:nil];
 }
 
 - (UILabel *)createLabelWithFrame:(CGRect)frame andText:(NSString *)text

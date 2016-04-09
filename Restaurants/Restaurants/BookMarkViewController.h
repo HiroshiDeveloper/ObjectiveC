@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BookMarkViewController : UIView
+@interface BookMarkViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
