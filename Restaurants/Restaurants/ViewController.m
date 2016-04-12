@@ -73,6 +73,7 @@
 - (void)createGoogleMapView
 {
     self.map = [[CommonHelper sharedInstance] makeViewWithFrame:[SizeHelper googleMapSize]];
+    self.map.mapType = MKMapTypeStandard;
     self.map.delegate = self;
     [self.view addSubview:self.map];
     [self requestAuthorization];
@@ -112,13 +113,13 @@
 
 - (void)setRegionInMap
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 1000.0, 2000.0);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 200, 200);
     [self.map setRegion:region animated:YES];
 }
 
 - (void)getLocationNameWithLocation
 {
-    CLLocationCoordinate2D center = self.location.coordinate;
+    /*CLLocationCoordinate2D center = self.location.coordinate;
     CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(center.latitude + 0.001,
                                                                   center.longitude + 0.001);
     CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(center.latitude - 0.001,
@@ -126,9 +127,28 @@
     GMSCoordinateBounds *viewport = [[GMSCoordinateBounds alloc] initWithCoordinate:northEast
                                                                          coordinate:southWest];
     GMSPlacePickerConfig *config = [[GMSPlacePickerConfig alloc] initWithViewport:viewport];
-    self.placePicker = [[GMSPlacePicker alloc] initWithConfig:config];
+    self.placePicker = [[GMSPlacePicker alloc] initWithConfig:config];*/
     
-    [self.placePicker pickPlaceWithCallback:^(GMSPlace *place, NSError *error) {
+    
+    [self.placesClient currentPlaceWithCallback:^(GMSPlaceLikelihoodList * _Nullable likelihoodList, NSError * _Nullable error) {
+        if (error)
+        {
+            return;
+        }
+        else
+        {
+            for(GMSPlaceLikelihood *likelihood in  likelihoodList.likelihoods)
+            {
+                NSLog(@"Name: %@", likelihood.place.name);
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                [annotation setCoordinate:likelihood.place.coordinate];
+                [annotation setTitle:likelihood.place.name]; //You can set the subtitle too
+                [self.map addAnnotation:annotation];
+            }
+        }
+    }];
+    
+    /*[self.placePicker pickPlaceWithCallback:^(GMSPlace *place, NSError *error) {
         if (error != nil) {
             NSLog(@"Pick Place error %@", [error localizedDescription]);
             return;
@@ -142,7 +162,7 @@
         } else {
             NSLog(@"No place selected");
         }
-    }];
+    }];*/
 }
 
 - (void)createPicArea

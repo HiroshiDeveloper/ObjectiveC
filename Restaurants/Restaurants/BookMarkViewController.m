@@ -71,24 +71,35 @@
     static NSString *CellIdentifier = @"newFriendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
+    UILabel *label1;
+    UILabel *label2;
+    
+    if (!cell)
+    {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.2,
+        label1 = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.2,
                                                                     cell.bounds.size.height * 0.4,
                                                                     cell.bounds.size.width * 0.2,
                                                                     cell.bounds.size.height * 0.3)];
-        label1.text = [NSString stringWithFormat: @"%ld", indexPath.row];
         
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.5,
+        label1.tag = 1;
+        label2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.5,
                                                                     cell.bounds.size.height * 0.4,
                                                                     cell.bounds.size.width * 0.2,
                                                                     cell.bounds.size.height * 0.3)];
-        label2.text = [NSString stringWithFormat: @"%ld", indexPath.row];
+        label2.tag = 2;
         
         [cell addSubview:label1];
         [cell addSubview:label2];
     }
-    //cell.textLabel.text=[NSString stringWithFormat: @"%ld", indexPath.row];
+    else
+    {
+        label1 = (UILabel *)[cell viewWithTag:1];
+        label2 = (UILabel *)[cell viewWithTag:2];
+    }
+    
+    label1.text = [NSString stringWithFormat: @"%ld", indexPath.row];
+    label2.text = [NSString stringWithFormat: @"%ld", indexPath.row];
     
     //etc.
     return cell;
