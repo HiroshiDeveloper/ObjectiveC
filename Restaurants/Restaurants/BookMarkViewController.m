@@ -12,14 +12,13 @@
 
 @interface BookMarkViewController ();
 
-@property (nonatomic) NSMutableDictionary *bookMarkDic;
-
 @end
 
 @implementation BookMarkViewController
 
 - (void)viewDidLoad
 {
+    NSLog(@"%@", self.bookMarkDic);
     self.view.backgroundColor = [UIColor whiteColor];
     [self createBar];
     [self createTableView];

@@ -13,12 +13,15 @@
 #import "BookMarkViewController.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "RestaurantsAnnotation.h"
 @import GoogleMaps;
 
 @interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UITextViewDelegate>
 
 @property (nonatomic) NSMutableArray<UIImageView *> *reviewArr;
 @property (nonatomic) NSMutableArray<UIImageView *> *imageArr;
+@property (nonatomic) NSMutableArray<GMSPlace *> *tempInfo;
+@property (nonatomic) NSMutableDictionary *restaurantInfo;
 @property (nonatomic) MKMapView *map;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *location;
@@ -27,7 +30,6 @@
 @property (nonatomic) NSString *comments;
 @property (nonatomic) NSInteger imgFlg;
 @property (nonatomic) UIView *confirmView;
-@property (nonatomic) NSMutableDictionary *information;
 @property (nonatomic) GMSPlacesClient *placesClient;
 @property (nonatomic) GMSPlacePicker *placePicker;
 @property (nonatomic) BOOL cameraFlg;
@@ -41,7 +43,6 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setDictionary];
     [self createBar];
     [self createGoogleMapView];
     [self createPicArea];
@@ -55,19 +56,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setDictionary
-{
-    self.information = [[NSMutableDictionary alloc] init];
-    [self.information setObject:@"" forKey:@"date"];
-    [self.information setObject:@"" forKey:@"name"];
-    [self.information setObject:@"" forKey:@"address"];
-    [self.information setObject:@"" forKey:@"pic1"];
-    [self.information setObject:@"" forKey:@"pic2"];
-    [self.information setObject:@"" forKey:@"pic3"];
-    [self.information setObject:@"" forKey:@"review"];
-    [self.information setObject:@"" forKey:@"comments"];
 }
 
 - (void)createGoogleMapView
@@ -137,14 +125,7 @@
         }
         else
         {
-            for(GMSPlaceLikelihood *likelihood in  likelihoodList.likelihoods)
-            {
-                NSLog(@"Name: %@", likelihood.place.name);
-                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-                [annotation setCoordinate:likelihood.place.coordinate];
-                [annotation setTitle:likelihood.place.name]; //You can set the subtitle too
-                [self.map addAnnotation:annotation];
-            }
+            [self createAnnotationWithGMSPlace:likelihoodList];
         }
     }];
     
@@ -164,6 +145,55 @@
         }
     }];*/
 }
+
+- (void)createAnnotationWithGMSPlace:(GMSPlaceLikelihoodList * _Nullable)likelihoodList
+{
+    for(GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods)
+    {
+        //NSLog(@"%@", likelihood.place);
+        for(NSString *type in likelihood.place.types)
+        {
+            if([type isEqualToString:@"bar"] || [type isEqualToString:@"restaurant"])
+            {
+                RestaurantsAnnotation *annotation = [[RestaurantsAnnotation alloc] init];
+                
+                [annotation setCoordinate:likelihood.place.coordinate];
+                [annotation setTitle:likelihood.place.name];
+                [annotation setPlaceID:likelihood.place.placeID];
+                [annotation setPlace:likelihood.place];
+                [self.map addAnnotation:annotation];
+            }
+        }
+    }
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation"];
+    annotationView.canShowCallout = YES;
+    UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"restaurant"]];
+    iconView.frame = [SizeHelper annotationIconSize];
+    annotationView.leftCalloutAccessoryView = iconView;
+    //annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(nonnull MKAnnotationView *)view
+{
+    self.nameLabel.text = view.annotation.title;
+    self.nameLabel.textColor = [UIColor blackColor];
+    
+    self.tempInfo = [[NSMutableArray alloc] init];
+    RestaurantsAnnotation *placeAnnotation = (RestaurantsAnnotation *)view.annotation;
+    [self.tempInfo addObject:placeAnnotation.place];
+    //NSLog(@"%@", placeAnnotation.place);
+}
+
+
 
 - (void)createPicArea
 {
@@ -288,12 +318,12 @@
     
     UIBarButtonItem *bookmarkItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkItemPressed)];
     
-    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemPressed)];
+    //UIBarButtonItem *searchItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemPressed)];
     
     UIBarButtonItem *saveItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveItemPressed)];
     
     UINavigationItem *item = [[UINavigationItem alloc] init];
-    [item setLeftBarButtonItems:[NSArray arrayWithObjects:cameraItem, searchItem, bookmarkItem, nil]];
+    [item setLeftBarButtonItems:[NSArray arrayWithObjects:cameraItem, bookmarkItem, nil]];
     item.rightBarButtonItem = saveItem;
     
     navBar.items = [NSArray arrayWithObject:item];
@@ -320,11 +350,6 @@
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     self.cameraFlg = TRUE;
     [self presentViewController:picker animated:YES completion:NULL];
-}
-
-- (void)searchItemPressed
-{
-    [self getLocationNameWithLocation];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -376,12 +401,20 @@
 
 - (void)saveInformation
 {
-    [self.information setObject:[self getCurrentDate] forKey:@"date"];
-    [self.information setObject:self.nameLabel forKey:@"name"];
-    [self.information setObject:self.address forKey:@"address"];
-    [self.information setObject:self.imageArr forKey:@"pic"];
-    [self.information setObject:self.reviewArr forKey:@"review"];
-    [self.information setObject:self.comments forKey:@"comments"];
+    BookMarkViewController *bookMarkInfo = [[BookMarkViewController alloc] init];
+    RestaurantsAnnotation *annotaion = [[RestaurantsAnnotation alloc] init];
+    
+    NSMutableDictionary *information = [[NSMutableDictionary alloc] init];
+    [information setObject:[self getCurrentDate] forKey:@"date"];
+    [information setObject:self.tempInfo forKey:@"info"];
+    [information setObject:self.imageArr forKey:@"pic"];
+    [information setObject:self.reviewArr forKey:@"review"];
+    if (!self.comments) {
+        self.comments = @"";
+    }
+    [information setObject:self.comments forKey:@"comments"];
+    
+    [bookMarkInfo.bookMarkDic setObject:information forKey:annotaion.placeID];
 }
 
 - (NSString *)getCurrentDate

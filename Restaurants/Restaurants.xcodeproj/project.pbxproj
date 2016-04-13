@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680671441CBDBD7B00E8F70B /* RestaurantsAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 680671431CBDBD7B00E8F70B /* RestaurantsAnnotation.m */; };
 		6809867F1CB46D77004DDE2A /* SizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809867E1CB46D77004DDE2A /* SizeHelper.m */; };
 		680986821CB46DE8004DDE2A /* CommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 680986811CB46DE8004DDE2A /* CommonHelper.m */; };
 		680986861CB47AAF004DDE2A /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 680986851CB47AAF004DDE2A /* ColorHelper.m */; };
@@ -26,6 +27,8 @@
 		040426D22012C24F45F7AFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		524798A17E45D80E57333949 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		667A2F906ED893C796018A69 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		680671421CBDBD7B00E8F70B /* RestaurantsAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestaurantsAnnotation.h; path = Base/RestaurantsAnnotation.h; sourceTree = "<group>"; };
+		680671431CBDBD7B00E8F70B /* RestaurantsAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestaurantsAnnotation.m; path = Base/RestaurantsAnnotation.m; sourceTree = "<group>"; };
 		6809867D1CB46D77004DDE2A /* SizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SizeHelper.h; path = Utilities/SizeHelper.h; sourceTree = "<group>"; };
 		6809867E1CB46D77004DDE2A /* SizeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SizeHelper.m; path = Utilities/SizeHelper.m; sourceTree = "<group>"; };
 		680986801CB46DE8004DDE2A /* CommonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonHelper.h; path = Utilities/CommonHelper.h; sourceTree = "<group>"; };
@@ -62,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		680671411CBDBD5000E8F70B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				680671421CBDBD7B00E8F70B /* RestaurantsAnnotation.h */,
+				680671431CBDBD7B00E8F70B /* RestaurantsAnnotation.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		6809867C1CB46D6D004DDE2A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +102,7 @@
 		686C3F391CB34A45006418E7 /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				680671411CBDBD5000E8F70B /* Base */,
 				6809867C1CB46D6D004DDE2A /* Utilities */,
 				686C3F3D1CB34A45006418E7 /* AppDelegate.h */,
 				686C3F3E1CB34A45006418E7 /* AppDelegate.m */,
@@ -254,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				686C3F421CB34A45006418E7 /* ViewController.m in Sources */,
+				680671441CBDBD7B00E8F70B /* RestaurantsAnnotation.m in Sources */,
 				680986861CB47AAF004DDE2A /* ColorHelper.m in Sources */,
 				686C3F3F1CB34A45006418E7 /* AppDelegate.m in Sources */,
 				68F79DCB1CB85F8C0089A299 /* BookMarkViewController.m in Sources */,

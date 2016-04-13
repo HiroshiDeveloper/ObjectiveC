@@ -111,4 +111,9 @@
                       [UIScreen mainScreen].bounds.size.height * 0.3);
 }
 
++ (CGRect)annotationIconSize
+{
+    return CGRectMake(5,5,20,20);
+}
+
 @end

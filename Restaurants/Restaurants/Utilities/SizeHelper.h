@@ -21,5 +21,6 @@
 + (CGRect)commentSize;
 + (CGRect)nameLabelSize;
 + (CGRect)confirmView;
++ (CGRect)annotationIconSize;
 
 @end
