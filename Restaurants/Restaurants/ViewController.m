@@ -20,7 +20,6 @@
 
 @property (nonatomic) NSMutableArray<UIImageView *> *reviewArr;
 @property (nonatomic) NSMutableArray<UIImageView *> *imageArr;
-@property (nonatomic) NSMutableArray<GMSPlace *> *tempInfo;
 @property (nonatomic) NSMutableDictionary *restaurantInfo;
 @property (nonatomic) MKMapView *map;
 @property (nonatomic) CLLocationManager *locationManager;
@@ -32,6 +31,7 @@
 @property (nonatomic) UIView *confirmView;
 @property (nonatomic) GMSPlacesClient *placesClient;
 @property (nonatomic) GMSPlacePicker *placePicker;
+@property (nonatomic) GMSPlace *tempInfo;
 @property (nonatomic) BOOL cameraFlg;
 @property (nonatomic) BOOL hasStarted;
 
@@ -107,17 +107,6 @@
 
 - (void)getLocationNameWithLocation
 {
-    /*CLLocationCoordinate2D center = self.location.coordinate;
-    CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(center.latitude + 0.001,
-                                                                  center.longitude + 0.001);
-    CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(center.latitude - 0.001,
-                                                                  center.longitude - 0.001);
-    GMSCoordinateBounds *viewport = [[GMSCoordinateBounds alloc] initWithCoordinate:northEast
-                                                                         coordinate:southWest];
-    GMSPlacePickerConfig *config = [[GMSPlacePickerConfig alloc] initWithViewport:viewport];
-    self.placePicker = [[GMSPlacePicker alloc] initWithConfig:config];*/
-    
-    
     [self.placesClient currentPlaceWithCallback:^(GMSPlaceLikelihoodList * _Nullable likelihoodList, NSError * _Nullable error) {
         if (error)
         {
@@ -128,32 +117,19 @@
             [self createAnnotationWithGMSPlace:likelihoodList];
         }
     }];
-    
-    /*[self.placePicker pickPlaceWithCallback:^(GMSPlace *place, NSError *error) {
-        if (error != nil) {
-            NSLog(@"Pick Place error %@", [error localizedDescription]);
-            return;
-        }
-        
-        if (place != nil) {
-            self.nameLabel.text = place.name;
-            self.nameLabel.textColor = [UIColor blackColor];
-            self.address = place.formattedAddress;
-            //NSLog(@"%@", [place.formattedAddress componentsSeparatedByString:@", "]);
-        } else {
-            NSLog(@"No place selected");
-        }
-    }];*/
 }
 
 - (void)createAnnotationWithGMSPlace:(GMSPlaceLikelihoodList * _Nullable)likelihoodList
 {
     for(GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods)
     {
-        //NSLog(@"%@", likelihood.place);
         for(NSString *type in likelihood.place.types)
         {
-            if([type isEqualToString:@"bar"] || [type isEqualToString:@"restaurant"])
+            if([type isEqualToString:@"bar"] ||
+               [type isEqualToString:@"restaurant"] ||
+               [type isEqualToString:@"cafe"] ||
+               [type isEqualToString:@"bakery"] ||
+               [type isEqualToString:@"food"])
             {
                 RestaurantsAnnotation *annotation = [[RestaurantsAnnotation alloc] init];
                 
@@ -163,7 +139,47 @@
                 [annotation setPlace:likelihood.place];
                 [self.map addAnnotation:annotation];
             }
+            
         }
+    }
+}
+
+
+
+
+
+
+
+
+- (void)getLocationPicWithPlaceID:(NSString *)placeID
+{
+   
+    [self.placesClient lookUpPhotosForPlaceID:placeID callback:^(GMSPlacePhotoMetadataList * _Nullable photos, NSError * _Nullable error)
+    {
+        if (error)
+        {
+            return;
+        }
+        else
+        {
+            [self setPicturesWithMetadataList:photos.results];
+        }
+    }];
+}
+
+- (void) setPicturesWithMetadataList:(NSArray<GMSPlacePhotoMetadata *> *)results
+{
+    __block int i = 0;
+    
+    for(GMSPlacePhotoMetadata *metadata in results)
+    {
+        [self.placesClient loadPlacePhoto:metadata callback:^(UIImage * _Nullable photo, NSError * _Nullable error)
+        {
+            photo
+            
+            if (i > 2)
+                return;
+        }];
     }
 }
 
@@ -187,10 +203,10 @@
     self.nameLabel.text = view.annotation.title;
     self.nameLabel.textColor = [UIColor blackColor];
     
-    self.tempInfo = [[NSMutableArray alloc] init];
     RestaurantsAnnotation *placeAnnotation = (RestaurantsAnnotation *)view.annotation;
-    [self.tempInfo addObject:placeAnnotation.place];
-    //NSLog(@"%@", placeAnnotation.place);
+    self.tempInfo = placeAnnotation.place;
+
+    [self getLocationPicWithPlaceID:placeAnnotation.place.placeID];
 }
 
 
@@ -318,8 +334,6 @@
     
     UIBarButtonItem *bookmarkItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkItemPressed)];
     
-    //UIBarButtonItem *searchItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemPressed)];
-    
     UIBarButtonItem *saveItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveItemPressed)];
     
     UINavigationItem *item = [[UINavigationItem alloc] init];
@@ -399,11 +413,9 @@
     return label;
 }
 
+// save store's information
 - (void)saveInformation
 {
-    BookMarkViewController *bookMarkInfo = [[BookMarkViewController alloc] init];
-    RestaurantsAnnotation *annotaion = [[RestaurantsAnnotation alloc] init];
-    
     NSMutableDictionary *information = [[NSMutableDictionary alloc] init];
     [information setObject:[self getCurrentDate] forKey:@"date"];
     [information setObject:self.tempInfo forKey:@"info"];
@@ -414,7 +426,7 @@
     }
     [information setObject:self.comments forKey:@"comments"];
     
-    [bookMarkInfo.bookMarkDic setObject:information forKey:annotaion.placeID];
+    [[CommonHelper sharedInstance].bookMarkDic setObject:information forKey:self.tempInfo.placeID];
 }
 
 - (NSString *)getCurrentDate

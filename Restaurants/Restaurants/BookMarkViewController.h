@@ -10,6 +10,4 @@
 
 @interface BookMarkViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic) NSMutableDictionary *bookMarkDic;
-
 @end

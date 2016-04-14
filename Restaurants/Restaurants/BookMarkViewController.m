@@ -9,8 +9,12 @@
 #import "BookMarkViewController.h"
 #import "ViewController.h"
 #import "SizeHelper.h"
+#import "CommonHelper.h"
+@import GoogleMaps;
 
 @interface BookMarkViewController ();
+
+@property (nonatomic) NSArray *allKeys;
 
 @end
 
@@ -18,8 +22,8 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"%@", self.bookMarkDic);
     self.view.backgroundColor = [UIColor whiteColor];
+    self.allKeys = [[CommonHelper sharedInstance].bookMarkDic allKeys];
     [self createBar];
     [self createTableView];
 }
@@ -52,16 +56,16 @@
     [self.view addSubview:tableView];
 }
 
-// number of section(s), now I assume there is only 1 section
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 3;
+    return 80;
 }
 
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
     // get the book mark dictionary's info
-    return 10;
+    NSLog(@"%ld", [CommonHelper sharedInstance].bookMarkDic.count);
+    return [CommonHelper sharedInstance].bookMarkDic.count;
 }
 
 // the cell will be returned to the tableView
@@ -70,62 +74,60 @@
     static NSString *CellIdentifier = @"newFriendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    UILabel *label1;
-    UILabel *label2;
+    UILabel *dateLabel;
+    UILabel *nameLabel;
+    
+    NSMutableDictionary *bookMarkInfo = [CommonHelper sharedInstance].bookMarkDic;
+    NSDictionary *dic= [bookMarkInfo objectForKey:self.allKeys[indexPath.row]];
+    NSString *date = [dic objectForKey:@"date"];
+    
+    GMSPlace *infoPlace = (GMSPlace *)[dic objectForKey:@"info"];
+    NSString *name = infoPlace.name;
     
     if (!cell)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        label1 = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.2,
-                                                                    cell.bounds.size.height * 0.4,
-                                                                    cell.bounds.size.width * 0.2,
-                                                                    cell.bounds.size.height * 0.3)];
+        dateLabel = [[UILabel alloc] initWithFrame:[SizeHelper bmDateSizeWithParent:cell]];
         
-        label1.tag = 1;
-        label2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.5,
-                                                                    cell.bounds.size.height * 0.4,
-                                                                    cell.bounds.size.width * 0.2,
-                                                                    cell.bounds.size.height * 0.3)];
-        label2.tag = 2;
+        dateLabel.tag = 1;
         
-        [cell addSubview:label1];
-        [cell addSubview:label2];
+        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.35,
+                                                                    cell.bounds.size.height * 0.25,
+                                                                    cell.bounds.size.width * 0.6,
+                                                                    cell.bounds.size.height * 0.5)];
+        nameLabel.tag = 2;
+        
+        [cell addSubview:dateLabel];
+        [cell addSubview:nameLabel];
     }
     else
     {
-        label1 = (UILabel *)[cell viewWithTag:1];
-        label2 = (UILabel *)[cell viewWithTag:2];
+        dateLabel = (UILabel *)[cell viewWithTag:1];
+        nameLabel = (UILabel *)[cell viewWithTag:2];
     }
     
-    label1.text = [NSString stringWithFormat: @"%ld", indexPath.row];
-    label2.text = [NSString stringWithFormat: @"%ld", indexPath.row];
-    
-    //etc.
+    dateLabel.text = date;
+    nameLabel.text = name;
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    infoButton.frame = CGRectMake(cell.bounds.size.width * 1,
+                                  cell.bounds.size.height * 0.2,
+                                  cell.bounds.size.width * 0.15,
+                                  cell.bounds.size.height * 0.6);
+    [infoButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [cell addSubview:infoButton];
+
     return cell;
+}
+
+- (void)buttonClicked:(UIButton*)button
+{
+    NSLog(@"Button clicked.");
 }
 
 // when user tap the row, what action you want to perform
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld row", indexPath.row);
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString *sectionName;
-    switch (section)
-    {
-        case 0:
-            sectionName = @"one star restaurant";
-            break;
-        case 1:
-            sectionName = @"two star restaurant";
-            break;
-        default:
-            sectionName = @"three star restaurant";
-            break;
-    }
-    return sectionName;
 }
 
 

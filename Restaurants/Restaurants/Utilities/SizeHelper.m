@@ -103,6 +103,7 @@
     return CGRectMake([self margin], startHeight, [UIScreen mainScreen].bounds.size.width * 0.98, [self labelSize]);
 }
 
+// confirm dialog
 + (CGRect)confirmView
 {
     return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.2,
@@ -111,9 +112,19 @@
                       [UIScreen mainScreen].bounds.size.height * 0.3);
 }
 
+// annotation
 + (CGRect)annotationIconSize
 {
     return CGRectMake(5,5,20,20);
+}
+
+// bookmark date
++ (CGRect)bmDateSizeWithParent:(UITableViewCell *)parent
+{
+    return CGRectMake(parent.bounds.size.width * 0.01,
+                      parent.bounds.size.height * 0.25,
+                      parent.bounds.size.width * 0.3,
+                      parent.bounds.size.height * 0.5);
 }
 
 @end

@@ -22,5 +22,6 @@
 + (CGRect)nameLabelSize;
 + (CGRect)confirmView;
 + (CGRect)annotationIconSize;
++ (CGRect)bmDateSizeWithParent:(UITableViewCell *)parent;
 
 @end

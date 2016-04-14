@@ -30,6 +30,12 @@
 - (instancetype) initPrivate
 {
     self = [super init];
+    
+    if (self)
+    {
+        self.bookMarkDic = [NSMutableDictionary dictionary];
+    }
+    
     return self;
 }
 

@@ -14,4 +14,6 @@
 + (instancetype) sharedInstance;
 - (MKMapView *) makeViewWithFrame:(CGRect)size;
 
+@property (nonatomic) NSMutableDictionary *bookMarkDic;
+
 @end
