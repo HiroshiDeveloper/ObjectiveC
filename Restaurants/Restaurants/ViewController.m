@@ -11,6 +11,7 @@
 #import "SizeHelper.h"
 #import "ColorHelper.h"
 #import "BookMarkViewController.h"
+#import "MessageHelper.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "RestaurantsAnnotation.h"
@@ -29,6 +30,7 @@
 @property (nonatomic) NSString *comments;
 @property (nonatomic) NSInteger imgFlg;
 @property (nonatomic) UIView *confirmView;
+@property (nonatomic) UIImageView *defaultImage;
 @property (nonatomic) GMSPlacesClient *placesClient;
 @property (nonatomic) GMSPlacePicker *placePicker;
 @property (nonatomic) GMSPlace *tempInfo;
@@ -78,12 +80,14 @@
     
     if(CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse)
     {
-        self.locationManager.distanceFilter = 10;
+        self.locationManager.distanceFilter = 100;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.delegate = self;
         [self.locationManager startUpdatingLocation];
         [self.map setShowsUserLocation:YES];
         self.placesClient = [[GMSPlacesClient alloc] init];
+        self.map.zoomEnabled = NO;
+        self.map.scrollEnabled = NO;
     }
 }
 
@@ -95,13 +99,16 @@
         [self.map.userLocation setCoordinate:self.location.coordinate];
         [self setRegionInMap];
         self.hasStarted = true;
+   
         [self getLocationNameWithLocation];
     }
+    
+    // update calling the function above on each 500 meters
 }
 
 - (void)setRegionInMap
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 200, 200);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 400, 400);
     [self.map setRegion:region animated:YES];
 }
 
@@ -144,16 +151,8 @@
     }
 }
 
-
-
-
-
-
-
-
 - (void)getLocationPicWithPlaceID:(NSString *)placeID
 {
-   
     [self.placesClient lookUpPhotosForPlaceID:placeID callback:^(GMSPlacePhotoMetadataList * _Nullable photos, NSError * _Nullable error)
     {
         if (error)
@@ -169,18 +168,10 @@
 
 - (void) setPicturesWithMetadataList:(NSArray<GMSPlacePhotoMetadata *> *)results
 {
-    __block int i = 0;
-    
-    for(GMSPlacePhotoMetadata *metadata in results)
+    [self.placesClient loadPlacePhoto:results[0] callback:^(UIImage * _Nullable photo, NSError * _Nullable error)
     {
-        [self.placesClient loadPlacePhoto:metadata callback:^(UIImage * _Nullable photo, NSError * _Nullable error)
-        {
-            photo
-            
-            if (i > 2)
-                return;
-        }];
-    }
+        [self.defaultImage setImage:photo];
+    }];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -231,6 +222,10 @@
         imageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(plusLabelTap:)];
         [imageView addGestureRecognizer:tapGesture];
+        
+        if (i == 0) {
+            self.defaultImage = imageView;
+        }
     }
 }
 
@@ -281,7 +276,7 @@
 - (void)createNameArea
 {
     self.nameLabel = [[UILabel alloc] initWithFrame:[SizeHelper nameLabelSize]];
-    self.nameLabel.text = @"Select your favorite restaurant!";
+    self.nameLabel.text = [MessageHelper restaurantMsg];
     self.nameLabel.textColor = [UIColor lightGrayColor];
     [self.view addSubview:self.nameLabel];
 }
@@ -292,7 +287,7 @@
     textView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.5f];
     textView.returnKeyType = UIReturnKeyDone;
     textView.delegate = self;
-    textView.text = @"What's your comments for the restaurant? Type here!";
+    textView.text = [MessageHelper commentMsg];
     textView.textColor = [UIColor lightGrayColor];
     [self.view addSubview:textView];
 }
@@ -309,7 +304,7 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if ([textView.text isEqualToString:@"What's your comments for the restaurant? Type here!"]) {
+    if ([textView.text isEqualToString:[MessageHelper commentMsg]]) {
         textView.text = @"";
         textView.textColor = [UIColor blackColor]; //optional
     }
@@ -319,7 +314,7 @@
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:@""]) {
-        textView.text = @"What's your comments for the restaurant? Type here!";
+        textView.text = [MessageHelper commentMsg];
         textView.textColor = [UIColor lightGrayColor]; //optional
     }
     [textView resignFirstResponder];
@@ -381,23 +376,41 @@
 
 - (void)saveItemPressed
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Confirm"
-                                                                   message:@"Are you saving the information?"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
+    if ([self.nameLabel.text isEqualToString:[MessageHelper restaurantMsg]]) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                       message:[MessageHelper alertMsg]
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action){}];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else
+    {
+        [self createConfirmDialog];
+
+    }
+}
+
+- (void)createConfirmDialog
+{
+    UIAlertController* confirm = [UIAlertController alertControllerWithTitle:@"Confirm"
+                                                                     message:[MessageHelper confirmMsg]
+                                                              preferredStyle:UIAlertControllerStyleAlert];
     
     __weak ViewController *weakSelf = self;
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action)
-    {
-        [weakSelf saveInformation];
-    }];
+                                    {
+                                        [weakSelf saveInformation];
+                                    }];
     
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * action) {}];
+                                                         handler:^(UIAlertAction * action) {}];
     
-    [alert addAction:cancelAction];
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    [confirm addAction:cancelAction];
+    [confirm addAction:defaultAction];
+    [self presentViewController:confirm animated:YES completion:nil];
+
 }
 
 - (void)bookmarkItemPressed
@@ -421,6 +434,7 @@
     [information setObject:self.tempInfo forKey:@"info"];
     [information setObject:self.imageArr forKey:@"pic"];
     [information setObject:self.reviewArr forKey:@"review"];
+    [information setObject:self.defaultImage.image forKey:@"default"];
     if (!self.comments) {
         self.comments = @"";
     }

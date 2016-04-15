@@ -20,6 +20,7 @@
 		686C3F471CB34A45006418E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 686C3F461CB34A45006418E7 /* Assets.xcassets */; };
 		686C3F4A1CB34A45006418E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686C3F481CB34A45006418E7 /* LaunchScreen.storyboard */; };
 		68F79DCB1CB85F8C0089A299 /* BookMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F79DCA1CB85F8C0089A299 /* BookMarkViewController.m */; };
+		68FB32191CC0639300B1A3DB /* MessageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FB32181CC0639300B1A3DB /* MessageHelper.m */; };
 		7FB1D1FB23D2750BE0595AD9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 040426D22012C24F45F7AFEF /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		686C3F4B1CB34A45006418E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68F79DC91CB85F8C0089A299 /* BookMarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookMarkViewController.h; sourceTree = "<group>"; };
 		68F79DCA1CB85F8C0089A299 /* BookMarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookMarkViewController.m; sourceTree = "<group>"; };
+		68FB32171CC0639300B1A3DB /* MessageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageHelper.h; path = Utilities/MessageHelper.h; sourceTree = "<group>"; };
+		68FB32181CC0639300B1A3DB /* MessageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageHelper.m; path = Utilities/MessageHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				680986811CB46DE8004DDE2A /* CommonHelper.m */,
 				680986841CB47AAF004DDE2A /* ColorHelper.h */,
 				680986851CB47AAF004DDE2A /* ColorHelper.m */,
+				68FB32171CC0639300B1A3DB /* MessageHelper.h */,
+				68FB32181CC0639300B1A3DB /* MessageHelper.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				686C3F3F1CB34A45006418E7 /* AppDelegate.m in Sources */,
 				68F79DCB1CB85F8C0089A299 /* BookMarkViewController.m in Sources */,
 				6809867F1CB46D77004DDE2A /* SizeHelper.m in Sources */,
+				68FB32191CC0639300B1A3DB /* MessageHelper.m in Sources */,
 				686C3F3C1CB34A45006418E7 /* main.m in Sources */,
 				680986821CB46DE8004DDE2A /* CommonHelper.m in Sources */,
 			);

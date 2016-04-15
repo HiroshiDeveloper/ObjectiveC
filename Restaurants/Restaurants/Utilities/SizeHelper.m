@@ -118,13 +118,41 @@
     return CGRectMake(5,5,20,20);
 }
 
-// bookmark date
-+ (CGRect)bmDateSizeWithParent:(UITableViewCell *)parent
+// bookmark image
++ (CGRect)bmImageSizeWithParent:(UITableViewCell *)parent andImageSize:(int)size
 {
     return CGRectMake(parent.bounds.size.width * 0.01,
-                      parent.bounds.size.height * 0.25,
-                      parent.bounds.size.width * 0.3,
-                      parent.bounds.size.height * 0.5);
+                      size * 0.05,
+                      size * 0.9,
+                      size * 0.9);
 }
+
+// bookmark date
++ (CGRect)bmDateSizeWithSize:(int)size andParent:(UITableViewCell *)parent
+{
+    return CGRectMake(parent.bounds.size.width * 0.3,
+                      size * 0.005,
+                      parent.bounds.size.width * 0.6,
+                      size * 0.3);
+}
+
+// bookmark name
++ (CGRect)bmNameSizeWithSize:(int)size andParent:(UITableViewCell *)parent
+{
+    return CGRectMake(parent.bounds.size.width * 0.3,
+                      size * 0.005 * 2 + size * 0.3,
+                      parent.bounds.size.width * 0.6,
+                      size * 0.5);
+}
+
+// bookmark info button
++ (CGRect)bmInfoButtonSizeWithParent:(UITableViewCell *)parent
+{
+    return CGRectMake(parent.frame.size.width * 1,
+                                 parent.frame.size.height * 0.2,
+                                 parent.frame.size.width * 0.15,
+                                 parent.frame.size.height * 0.6);
+}
+
 
 @end

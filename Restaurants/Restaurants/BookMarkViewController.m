@@ -14,6 +14,8 @@
 
 @interface BookMarkViewController ();
 
+#define CELLHEIGH 80
+
 @property (nonatomic) NSArray *allKeys;
 
 @end
@@ -58,14 +60,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return CELLHEIGH;
 }
 
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
     // get the book mark dictionary's info
-    NSLog(@"%ld", [CommonHelper sharedInstance].bookMarkDic.count);
     return [CommonHelper sharedInstance].bookMarkDic.count;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        NSMutableDictionary *bookMarkInfo = [CommonHelper sharedInstance].bookMarkDic;
+        [bookMarkInfo removeObjectForKey:self.allKeys[indexPath.row]];
+        [self viewDidLoad];
+    }
 }
 
 // the cell will be returned to the tableView
@@ -87,18 +102,19 @@
     if (!cell)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        dateLabel = [[UILabel alloc] initWithFrame:[SizeHelper bmDateSizeWithParent:cell]];
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
         
+        dateLabel = [[UILabel alloc] initWithFrame:[SizeHelper bmDateSizeWithSize:CELLHEIGH andParent:cell]];
         dateLabel.tag = 1;
         
-        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width * 0.35,
-                                                                    cell.bounds.size.height * 0.25,
-                                                                    cell.bounds.size.width * 0.6,
-                                                                    cell.bounds.size.height * 0.5)];
+        nameLabel = [[UILabel alloc] initWithFrame:[SizeHelper bmNameSizeWithSize:CELLHEIGH andParent:cell]];
+        nameLabel.font=[nameLabel.font fontWithSize:20];
         nameLabel.tag = 2;
         
         [cell addSubview:dateLabel];
         [cell addSubview:nameLabel];
+        
     }
     else
     {
@@ -106,17 +122,31 @@
         nameLabel = (UILabel *)[cell viewWithTag:2];
     }
     
+    [self createStoreIconWithImage:[dic objectForKey:@"default"] andParent:cell];
+    [self createInfoButtonWithParent:cell];
+    
     dateLabel.text = date;
     nameLabel.text = name;
+    
+    return cell;
+}
+
+- (void)createStoreIconWithImage:(UIImage *)image andParent:(UITableViewCell *)cell
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:[SizeHelper bmImageSizeWithParent:cell andImageSize:CELLHEIGH]];
+    [imageView setImage:image];
+    imageView.layer.cornerRadius = CELLHEIGH * 0.9 / 2;
+    imageView.layer.masksToBounds = YES;
+    [cell addSubview:imageView];
+}
+
+- (void)createInfoButtonWithParent:(UITableViewCell *)cell
+{
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    infoButton.frame = CGRectMake(cell.bounds.size.width * 1,
-                                  cell.bounds.size.height * 0.2,
-                                  cell.bounds.size.width * 0.15,
-                                  cell.bounds.size.height * 0.6);
+    infoButton.frame = [SizeHelper bmInfoButtonSizeWithParent:cell];
+    infoButton.center = CGPointMake(infoButton.center.x, CELLHEIGH / 2);
     [infoButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:infoButton];
-
-    return cell;
 }
 
 - (void)buttonClicked:(UIButton*)button

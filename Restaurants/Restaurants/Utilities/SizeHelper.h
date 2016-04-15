@@ -22,6 +22,9 @@
 + (CGRect)nameLabelSize;
 + (CGRect)confirmView;
 + (CGRect)annotationIconSize;
-+ (CGRect)bmDateSizeWithParent:(UITableViewCell *)parent;
++ (CGRect)bmImageSizeWithParent:(UITableViewCell *)parent andImageSize:(int)size;
++ (CGRect)bmDateSizeWithSize:(int)size andParent:(UITableViewCell *)parent;
++ (CGRect)bmNameSizeWithSize:(int)size andParent:(UITableViewCell *)parent;
++ (CGRect)bmInfoButtonSizeWithParent:(UITableViewCell *)parent;
 
 @end
