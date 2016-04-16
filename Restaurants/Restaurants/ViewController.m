@@ -348,6 +348,7 @@
     for (int i=0; i<3; i++)
     {
         self.reviewArr[i].image = (i <= tag) ? [UIImage imageNamed:@"gold_star"] : [UIImage imageNamed:@"gray_star"];
+        
     }
 }
 
@@ -433,7 +434,12 @@
     [information setObject:[self getCurrentDate] forKey:@"date"];
     [information setObject:self.tempInfo forKey:@"info"];
     [information setObject:self.imageArr forKey:@"pic"];
-    [information setObject:self.reviewArr forKey:@"review"];
+    NSMutableArray<UIImage *> *newReviewArr = [NSMutableArray array];
+    [self.reviewArr enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [newReviewArr addObject:obj.image];
+    }];
+    
+    [information setObject:newReviewArr forKey:@"review"];
     [information setObject:self.defaultImage.image forKey:@"default"];
     if (!self.comments) {
         self.comments = @"";

@@ -12,6 +12,7 @@
 		680986821CB46DE8004DDE2A /* CommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 680986811CB46DE8004DDE2A /* CommonHelper.m */; };
 		680986861CB47AAF004DDE2A /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 680986851CB47AAF004DDE2A /* ColorHelper.m */; };
 		68553CF01CB70A4800CF1F37 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68553CEF1CB70A4800CF1F37 /* CoreLocation.framework */; };
+		68588FCB1CC191A200187110 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68588FCA1CC191A200187110 /* InfoViewController.m */; };
 		685C4F621CB5D4D000B16346 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685C4F611CB5D4D000B16346 /* MapKit.framework */; };
 		686C3F3C1CB34A45006418E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 686C3F3B1CB34A45006418E7 /* main.m */; };
 		686C3F3F1CB34A45006418E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 686C3F3E1CB34A45006418E7 /* AppDelegate.m */; };
@@ -38,6 +39,8 @@
 		680986841CB47AAF004DDE2A /* ColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorHelper.h; path = Utilities/ColorHelper.h; sourceTree = "<group>"; };
 		680986851CB47AAF004DDE2A /* ColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorHelper.m; path = Utilities/ColorHelper.m; sourceTree = "<group>"; };
 		68553CEF1CB70A4800CF1F37 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		68588FC91CC191A200187110 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		68588FCA1CC191A200187110 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		685C4F611CB5D4D000B16346 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		686C3F3B1CB34A45006418E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		686C3F3D1CB34A45006418E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				686C3F411CB34A45006418E7 /* ViewController.m */,
 				68F79DC91CB85F8C0089A299 /* BookMarkViewController.h */,
 				68F79DCA1CB85F8C0089A299 /* BookMarkViewController.m */,
+				68588FC91CC191A200187110 /* InfoViewController.h */,
+				68588FCA1CC191A200187110 /* InfoViewController.m */,
 				686C3F431CB34A45006418E7 /* Main.storyboard */,
 				686C3F461CB34A45006418E7 /* Assets.xcassets */,
 				686C3F481CB34A45006418E7 /* LaunchScreen.storyboard */,
@@ -279,6 +284,7 @@
 				6809867F1CB46D77004DDE2A /* SizeHelper.m in Sources */,
 				68FB32191CC0639300B1A3DB /* MessageHelper.m in Sources */,
 				686C3F3C1CB34A45006418E7 /* main.m in Sources */,
+				68588FCB1CC191A200187110 /* InfoViewController.m in Sources */,
 				680986821CB46DE8004DDE2A /* CommonHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -118,7 +118,7 @@
     return CGRectMake(5,5,20,20);
 }
 
-// bookmark image
+// bookmarkView image
 + (CGRect)bmImageSizeWithParent:(UITableViewCell *)parent andImageSize:(int)size
 {
     return CGRectMake(parent.bounds.size.width * 0.01,
@@ -127,7 +127,7 @@
                       size * 0.9);
 }
 
-// bookmark date
+// bookmarkView date
 + (CGRect)bmDateSizeWithSize:(int)size andParent:(UITableViewCell *)parent
 {
     return CGRectMake(parent.bounds.size.width * 0.3,
@@ -136,7 +136,7 @@
                       size * 0.3);
 }
 
-// bookmark name
+// bookmarkView name
 + (CGRect)bmNameSizeWithSize:(int)size andParent:(UITableViewCell *)parent
 {
     return CGRectMake(parent.bounds.size.width * 0.3,
@@ -145,7 +145,7 @@
                       size * 0.5);
 }
 
-// bookmark info button
+// bookmarkView info button
 + (CGRect)bmInfoButtonSizeWithParent:(UITableViewCell *)parent
 {
     return CGRectMake(parent.frame.size.width * 1,
@@ -154,5 +154,48 @@
                                  parent.frame.size.height * 0.6);
 }
 
+// infoView name
++ (CGRect)ifRestaurantNameSize
+{
+    return CGRectMake([self margin],
+                      [self imgMapStartHeight],
+                      [UIScreen mainScreen].bounds.size.width * 0.98,
+                      [UIScreen mainScreen].bounds.size.height * 0.1);
+}
+
+// infoView Restautant icon size
++ (CGFloat)iconSize
+{
+    return [UIScreen mainScreen].bounds.size.width * 0.4;
+}
+
+// infoView restaurant icon
++ (CGRect)ifRestaurantIconSize
+{
+    return CGRectMake([self margin],
+                      [self imgMapStartHeight] + [UIScreen mainScreen].bounds.size.height * 0.1,
+                      [self iconSize],
+                      [self iconSize]);
+}
+
+// infoView review icon
++ (CGRect)ifReviewSizeWithIndex:(int)index
+{
+    CGFloat startWidth = [UIScreen mainScreen].bounds.size.width * 0.6;
+    CGFloat startHeight = [self imgMapStartHeight] + [self iconSize] + [UIScreen mainScreen].bounds.size.height * 0.1 - [self reviewImgSize];
+    
+    switch (index)
+    {
+        case 0:
+            return CGRectMake(startWidth, startHeight, [self reviewImgSize], [self reviewImgSize]);
+            break;
+        case 1:
+            return CGRectMake(startWidth + [self margin] + [self reviewImgSize], startHeight, [self reviewImgSize], [self reviewImgSize]);
+            break;
+        default:
+            return CGRectMake(startWidth + [self margin] * 2 + [self reviewImgSize] * 2, startHeight, [self reviewImgSize], [self reviewImgSize]);
+            break;
+    }
+}
 
 @end

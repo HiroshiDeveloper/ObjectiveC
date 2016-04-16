@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "SizeHelper.h"
 #import "CommonHelper.h"
+#import "InfoViewController.h"
 @import GoogleMaps;
 
 @interface BookMarkViewController ();
@@ -45,7 +46,6 @@
 - (void)backItemPressed
 {
     [self presentViewController:[ViewController new] animated:YES completion:nil];
-
 }
 
 - (void)createTableView
@@ -123,7 +123,7 @@
     }
     
     [self createStoreIconWithImage:[dic objectForKey:@"default"] andParent:cell];
-    [self createInfoButtonWithParent:cell];
+    [self createInfoButtonWithParent:cell andIdIndex:(int)indexPath.row];
     
     dateLabel.text = date;
     nameLabel.text = name;
@@ -140,18 +140,20 @@
     [cell addSubview:imageView];
 }
 
-- (void)createInfoButtonWithParent:(UITableViewCell *)cell
+- (void)createInfoButtonWithParent:(UITableViewCell *)cell andIdIndex:(int)infoId
 {
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     infoButton.frame = [SizeHelper bmInfoButtonSizeWithParent:cell];
     infoButton.center = CGPointMake(infoButton.center.x, CELLHEIGH / 2);
+    infoButton.tag = infoId;
     [infoButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:infoButton];
 }
 
-- (void)buttonClicked:(UIButton*)button
+- (void)buttonClicked:(id)sender
 {
-    NSLog(@"Button clicked.");
+    UIButton *button=(UIButton *)sender;
+    [self presentViewController:[[InfoViewController alloc] initWithPlaceID:self.allKeys[[button tag]]] animated:YES completion:nil];
 }
 
 // when user tap the row, what action you want to perform

@@ -26,5 +26,9 @@
 + (CGRect)bmDateSizeWithSize:(int)size andParent:(UITableViewCell *)parent;
 + (CGRect)bmNameSizeWithSize:(int)size andParent:(UITableViewCell *)parent;
 + (CGRect)bmInfoButtonSizeWithParent:(UITableViewCell *)parent;
++ (CGRect)ifRestaurantNameSize;
++ (CGRect)ifRestaurantIconSize;
++ (CGFloat)iconSize;
++ (CGRect)ifReviewSizeWithIndex:(int)index;
 
 @end
