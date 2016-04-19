@@ -433,13 +433,19 @@
     NSMutableDictionary *information = [[NSMutableDictionary alloc] init];
     [information setObject:[self getCurrentDate] forKey:@"date"];
     [information setObject:self.tempInfo forKey:@"info"];
-    [information setObject:self.imageArr forKey:@"pic"];
+    
+    NSMutableArray<UIImage *> *newImageArr = [NSMutableArray array];
+    [self.imageArr enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [newImageArr addObject:obj.image];
+    }];
+    [information setObject:newImageArr forKey:@"pic"];
+    
     NSMutableArray<UIImage *> *newReviewArr = [NSMutableArray array];
     [self.reviewArr enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [newReviewArr addObject:obj.image];
     }];
-    
     [information setObject:newReviewArr forKey:@"review"];
+    
     [information setObject:self.defaultImage.image forKey:@"default"];
     if (!self.comments) {
         self.comments = @"";

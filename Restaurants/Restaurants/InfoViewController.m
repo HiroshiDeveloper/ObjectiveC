@@ -37,12 +37,43 @@
     [self createBar];
     
     NSMutableDictionary *bookMarkInfo = [CommonHelper sharedInstance].bookMarkDic;
+    NSLog(@"%@", bookMarkInfo);
     NSDictionary *dic= [bookMarkInfo objectForKey:self.placeID];
     GMSPlace *infoPlace = (GMSPlace *)[dic objectForKey:@"info"];
     
-    [self createUILabelWithFrame:[SizeHelper ifRestaurantNameSize] andName:infoPlace.name];
+    [self createCenterUILabelWithFrame:[SizeHelper ifRestaurantNameSize] andName:infoPlace.name];
     [self createStoreIconWithImage:[dic objectForKey:@"default"]];
     [self createReviewAreaWithImage:[dic objectForKey:@"review"]];
+    //[self createLeftUILabelWithFrame:[SizeHelper ifDateLabelSize] andName:@"Date"];
+    [self createCenterUILabelWithFrame:[SizeHelper ifDateSize] andName:[dic objectForKey:@"date"]];
+    
+    [self createLeftUILabelWithFrame:[SizeHelper ifCommentLabelSize] andName:@"Comment"];
+    [self createTextWithFrame:[SizeHelper ifCommentSize] andText:[dic objectForKey:@"comments"]];
+    
+    [self createLeftUILabelWithFrame:[SizeHelper ifAddressLabelSize] andName:@"Address"];
+    [self createTextWithFrame:[SizeHelper ifAddressSize] andText:[[infoPlace.formattedAddress
+                                                                    componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]];
+    [self createURLTextWithFrame:[SizeHelper ifWebsiteSize] andURL:infoPlace.website];
+    
+    
+    for (int i=0; i<3; i++)
+    {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:[SizeHelper ifImageSizeWithIndex:i]];
+        [imageView setImage:[dic objectForKey:@"pic"][i]];
+        [self.view addSubview:imageView];
+    }
+    
+    //[self createUITextWithFrame:[SizeHelper ifWebsiteSize] andName:infoPlace.website];
+
+    
+    
+    //[self createLeftUILabelWithFrame:[SizeHelper ifAddressLabelSize] andName:@"Address"];
+    //[self createLeftUITextWithFrame:[SizeHelper ifAddressSize] andName:[[infoPlace.formattedAddress
+    //                                                                      componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]];
+    //NSLog(@"%@", [[infoPlace.formattedAddress
+    //               componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]);
+    //[self createLeftUILabelWithFrame:[SizeHelper ifWebsiteLabelSize] andName:@"Website"];
+    //[self createLeftUILabelWithFrame:[SizeHelper ifCommentLabelSize] andName:@"Comment"];
 }
 
 - (void)createBar
@@ -57,11 +88,42 @@
     [self.view bringSubviewToFront:navBar];
 }
 
-- (void)createUILabelWithFrame:(CGRect)frame andName:(NSString *)name
+- (void)createCenterUILabelWithFrame:(CGRect)frame andName:(NSString *)name
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.text = name;
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+}
+
+- (void)createLeftUILabelWithFrame:(CGRect)frame andName:(NSString *)name
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.text = name;
     [self.view addSubview:label];
+}
+
+- (void)createTextWithFrame:(CGRect)frame andText:(NSString *)text
+{
+    UITextView *textView = [[UITextView alloc] initWithFrame:frame];
+    textView.text = [textView.text stringByAppendingString:text];
+    textView.editable = NO;
+    textView.scrollEnabled = YES;
+    [textView setFont:[UIFont systemFontOfSize:15]];
+    [self.view addSubview:textView];
+}
+
+- (void)createURLTextWithFrame:(CGRect)frame andURL:(NSURL *)url
+{
+    UITextView *textView = [[UITextView alloc] initWithFrame:frame];
+    textView.editable = NO;
+    textView.scrollEnabled = YES;
+    
+    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"Website URL"];
+    [str addAttribute: NSLinkAttributeName value:url range: NSMakeRange(0, str.length)];
+    textView.attributedText = str;
+    
+    [self.view addSubview:textView];
 }
 
 - (void)createStoreIconWithImage:(UIImage *)image

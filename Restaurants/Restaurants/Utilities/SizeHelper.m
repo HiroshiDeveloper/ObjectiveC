@@ -132,7 +132,7 @@
 {
     return CGRectMake(parent.bounds.size.width * 0.3,
                       size * 0.005,
-                      parent.bounds.size.width * 0.6,
+                      parent.bounds.size.width * 0.7,
                       size * 0.3);
 }
 
@@ -141,7 +141,7 @@
 {
     return CGRectMake(parent.bounds.size.width * 0.3,
                       size * 0.005 * 2 + size * 0.3,
-                      parent.bounds.size.width * 0.6,
+                      parent.bounds.size.width * 0.7,
                       size * 0.5);
 }
 
@@ -172,7 +172,7 @@
 // infoView restaurant icon
 + (CGRect)ifRestaurantIconSize
 {
-    return CGRectMake([self margin],
+    return CGRectMake(([UIScreen mainScreen].bounds.size.width - [self iconSize])/2,
                       [self imgMapStartHeight] + [UIScreen mainScreen].bounds.size.height * 0.1,
                       [self iconSize],
                       [self iconSize]);
@@ -197,5 +197,119 @@
             break;
     }
 }
+
+// infoView 'date' label
+//+ (CGRect)ifDateLabelSize
+//{
+//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
+//                      [UIScreen mainScreen].bounds.size.height * 0.5,
+//                      [UIScreen mainScreen].bounds.size.width * 0.3,
+//                      [UIScreen mainScreen].bounds.size.height * 0.05);
+//}
+
+// infoView 'date'
++ (CGRect)ifDateSize
+{
+    return CGRectMake([self margin],
+                      [UIScreen mainScreen].bounds.size.height * 0.45,
+                      [UIScreen mainScreen].bounds.size.width * 0.98,
+                      [UIScreen mainScreen].bounds.size.height * 0.05);
+}
+
+//// infoView 'address' label
+//+ (CGRect)ifAddressLabelSize
+//{
+//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
+//                      [UIScreen mainScreen].bounds.size.height * 0.55,
+//                      [UIScreen mainScreen].bounds.size.width * 0.3,
+//                      [UIScreen mainScreen].bounds.size.height * 0.05);
+//}
+//
+//// infoView 'address'
+//+ (CGRect)ifAddressSize
+//{
+//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.4,
+//                      [UIScreen mainScreen].bounds.size.height * 0.55,
+//                      [UIScreen mainScreen].bounds.size.width * 0.7,
+//                      [UIScreen mainScreen].bounds.size.height * 0.2);
+//}
+//
+//
+//// infoView 'website' label
+//+ (CGRect)ifWebsiteLabelSize
+//{
+//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
+//                      [UIScreen mainScreen].bounds.size.height * 0.75,
+//                      [UIScreen mainScreen].bounds.size.width * 0.3,
+//                      [UIScreen mainScreen].bounds.size.height * 0.05);
+//}
+
+// infoView 'comment' label
++ (CGRect)ifCommentLabelSize
+{
+    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
+                      [UIScreen mainScreen].bounds.size.height * 0.5,
+                      [UIScreen mainScreen].bounds.size.width * 0.3,
+                      [UIScreen mainScreen].bounds.size.height * 0.05);
+}
+
+// infoView 'comment'
++ (CGRect)ifCommentSize
+{
+    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
+                      [UIScreen mainScreen].bounds.size.height * 0.55,
+                      [UIScreen mainScreen].bounds.size.width * 0.45,
+                      [UIScreen mainScreen].bounds.size.height * 0.2);
+}
+
+// infoView 'address' label
++ (CGRect)ifAddressLabelSize
+{
+    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.55,
+                      [UIScreen mainScreen].bounds.size.height * 0.5,
+                      [UIScreen mainScreen].bounds.size.width * 0.3,
+                      [UIScreen mainScreen].bounds.size.height * 0.05);
+}
+
+// infoView 'address'
++ (CGRect)ifAddressSize
+{
+    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.55,
+                      [UIScreen mainScreen].bounds.size.height * 0.55,
+                      [UIScreen mainScreen].bounds.size.width * 0.45,
+                      [UIScreen mainScreen].bounds.size.height * 0.15);
+}
+
+
+// infoView 'website' label
++ (CGRect)ifWebsiteSize
+{
+    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.55,
+                      [UIScreen mainScreen].bounds.size.height * 0.7,
+                      [UIScreen mainScreen].bounds.size.width * 0.45,
+                      [UIScreen mainScreen].bounds.size.height * 0.05);
+}
+
+// infoView review icon
++ (CGRect)ifImageSizeWithIndex:(int)index
+{
+    CGFloat startWidth = [self margin];
+    CGFloat startHeight = [UIScreen mainScreen].bounds.size.height * 0.8;
+    CGFloat imageSize = ([UIScreen mainScreen].bounds.size.width - [self margin] * 4) / 3;
+    
+    switch (index)
+    {
+        case 0:
+            return CGRectMake(startWidth, startHeight, imageSize, imageSize);
+            break;
+        case 1:
+            return CGRectMake(startWidth + [self margin] + imageSize, startHeight, imageSize, imageSize);
+            break;
+        default:
+            return CGRectMake(startWidth + [self margin] * 2 + imageSize * 2, startHeight, imageSize, imageSize);
+            break;
+    }
+}
+
 
 @end

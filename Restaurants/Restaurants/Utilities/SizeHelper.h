@@ -30,5 +30,13 @@
 + (CGRect)ifRestaurantIconSize;
 + (CGFloat)iconSize;
 + (CGRect)ifReviewSizeWithIndex:(int)index;
+//+ (CGRect)ifDateLabelSize;
++ (CGRect)ifDateSize;
++ (CGRect)ifAddressLabelSize;
++ (CGRect)ifAddressSize;
++ (CGRect)ifCommentLabelSize;
++ (CGRect)ifCommentSize;
++ (CGRect)ifWebsiteSize;
++ (CGRect)ifImageSizeWithIndex:(int)index;
 
 @end
