@@ -44,7 +44,6 @@
     [self createCenterUILabelWithFrame:[SizeHelper ifRestaurantNameSize] andName:infoPlace.name];
     [self createStoreIconWithImage:[dic objectForKey:@"default"]];
     [self createReviewAreaWithImage:[dic objectForKey:@"review"]];
-    //[self createLeftUILabelWithFrame:[SizeHelper ifDateLabelSize] andName:@"Date"];
     [self createCenterUILabelWithFrame:[SizeHelper ifDateSize] andName:[dic objectForKey:@"date"]];
     
     [self createLeftUILabelWithFrame:[SizeHelper ifCommentLabelSize] andName:@"Comment"];
@@ -62,18 +61,6 @@
         [imageView setImage:[dic objectForKey:@"pic"][i]];
         [self.view addSubview:imageView];
     }
-    
-    //[self createUITextWithFrame:[SizeHelper ifWebsiteSize] andName:infoPlace.website];
-
-    
-    
-    //[self createLeftUILabelWithFrame:[SizeHelper ifAddressLabelSize] andName:@"Address"];
-    //[self createLeftUITextWithFrame:[SizeHelper ifAddressSize] andName:[[infoPlace.formattedAddress
-    //                                                                      componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]];
-    //NSLog(@"%@", [[infoPlace.formattedAddress
-    //               componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]);
-    //[self createLeftUILabelWithFrame:[SizeHelper ifWebsiteLabelSize] andName:@"Website"];
-    //[self createLeftUILabelWithFrame:[SizeHelper ifCommentLabelSize] andName:@"Comment"];
 }
 
 - (void)createBar
@@ -147,7 +134,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)backItemPressed
