@@ -25,7 +25,7 @@
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *location;
 @property (nonatomic) UILabel *nameLabel;
-@property (nonatomic) NSString *comments;
+@property (nonatomic) UITextView *commentTextView;
 @property (nonatomic) NSInteger imgFlg;
 @property (nonatomic) UIImageView *defaultImage;
 @property (nonatomic) GMSPlacesClient *placesClient;
@@ -103,7 +103,7 @@
 - (void)setRegionInMap
 {
     // set the scope of google map
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 200, 200);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 100, 100);
     [self.map setRegion:region animated:YES];
 }
 
@@ -125,6 +125,7 @@
 {
     for(GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods)
     {
+        NSLog(@"%@", likelihood);
         for(NSString *type in likelihood.place.types)
         {
             if([type isEqualToString:@"bar"] ||
@@ -141,7 +142,6 @@
                 [annotation setPlace:likelihood.place];
                 [self.map addAnnotation:annotation];
             }
-            
         }
     }
 }
@@ -165,7 +165,13 @@
 {
     [self.placesClient loadPlacePhoto:results[0] callback:^(UIImage * _Nullable photo, NSError * _Nullable error)
     {
-        [self.defaultImage setImage:photo];
+        if (error) {
+            return;
+        }
+        else
+        {
+            [self.defaultImage setImage:photo];
+        }
     }];
 }
 
@@ -188,20 +194,29 @@
     RestaurantsAnnotation *placeAnnotation = (RestaurantsAnnotation *)view.annotation;
     
     NSMutableDictionary *bookMarkInfo = [CommonHelper sharedInstance].bookMarkDic;
+    self.tempInfo = placeAnnotation.place;
     
     if ([[bookMarkInfo allKeys] containsObject:placeAnnotation.placeID])
     {
         NSDictionary *dic= [bookMarkInfo objectForKey:placeAnnotation.placeID];
-        NSLog(@"%@", bookMarkInfo);
         for (int i=0; i<3; i++)
         {
             self.reviewArr[i].image = [dic objectForKey:@"review"][i];
-            self.imageArr[i].image = [dic objectForKey:@"image"][i];
+            self.imageArr[i].image = [dic objectForKey:@"pic"][i];
         }
+        self.commentTextView.text = [dic objectForKey:@"comment"];
+        self.commentTextView.textColor = [UIColor blackColor];
     }
     else
     {
-        self.tempInfo = placeAnnotation.place;
+        for (int i=0; i<3; i++)
+        {
+            self.reviewArr[i].image = [UIImage imageNamed:@"gray_star"];
+            self.imageArr[i].image = [UIImage imageNamed:@"gallery"];
+        }
+        
+        self.commentTextView.text = [MessageHelper commentMsg];
+        self.commentTextView.textColor = [UIColor lightGrayColor];
     }
     
     self.nameLabel.text = view.annotation.title;
@@ -291,19 +306,18 @@
 
 - (void)createCommentArea
 {
-    UITextView *textView = [[UITextView alloc] initWithFrame:[SizeHelper commentSize]];
-    textView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.5f];
-    textView.returnKeyType = UIReturnKeyDone;
-    textView.delegate = self;
-    textView.text = [MessageHelper commentMsg];
-    textView.textColor = [UIColor lightGrayColor];
-    [self.view addSubview:textView];
+    self.commentTextView = [[UITextView alloc] initWithFrame:[SizeHelper commentSize]];
+    self.commentTextView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.5f];
+    self.commentTextView.returnKeyType = UIReturnKeyDone;
+    self.commentTextView.delegate = self;
+    self.commentTextView.text = [MessageHelper commentMsg];
+    self.commentTextView.textColor = [UIColor lightGrayColor];
+    [self.view addSubview:self.commentTextView];
 }
 
 - (BOOL) textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
 {
     if ([text isEqualToString:@"\n"]) {
-        self.comments = textView.text;
         [textView resignFirstResponder];
         return NO;
     }
@@ -356,7 +370,6 @@
     for (int i=0; i<3; i++)
     {
         self.reviewArr[i].image = (i <= tag) ? [UIImage imageNamed:@"gold_star"] : [UIImage imageNamed:@"gray_star"];
-        
     }
 }
 
@@ -383,6 +396,7 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+// save dialog
 - (void)saveItemPressed
 {
     if ([self.nameLabel.text isEqualToString:[MessageHelper restaurantMsg]]) {
@@ -455,10 +469,11 @@
     [information setObject:newReviewArr forKey:@"review"];
     
     [information setObject:self.defaultImage.image forKey:@"default"];
-    if (!self.comments) {
-        self.comments = @"";
+
+    if ([self.commentTextView.text isEqualToString:[MessageHelper commentMsg]]) {
+        self.commentTextView.text = @"";
     }
-    [information setObject:self.comments forKey:@"comments"];
+    [information setObject:self.commentTextView.text forKey:@"comment"];
     
     [[CommonHelper sharedInstance].bookMarkDic setObject:information forKey:self.tempInfo.placeID];
 }

@@ -47,7 +47,7 @@
     [self createCenterUILabelWithFrame:[SizeHelper ifDateSize] andName:[dic objectForKey:@"date"]];
     
     [self createLeftUILabelWithFrame:[SizeHelper ifCommentLabelSize] andName:@"Comment"];
-    [self createTextWithFrame:[SizeHelper ifCommentSize] andText:[dic objectForKey:@"comments"]];
+    [self createTextWithFrame:[SizeHelper ifCommentSize] andText:[dic objectForKey:@"comment"]];
     
     [self createLeftUILabelWithFrame:[SizeHelper ifAddressLabelSize] andName:@"Address"];
     [self createTextWithFrame:[SizeHelper ifAddressSize] andText:[[infoPlace.formattedAddress

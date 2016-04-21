@@ -115,7 +115,6 @@
         
         [cell addSubview:dateLabel];
         [cell addSubview:nameLabel];
-        
     }
     else
     {
