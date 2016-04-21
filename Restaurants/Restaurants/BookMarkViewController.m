@@ -15,6 +15,7 @@
 
 @interface BookMarkViewController ();
 
+// the cell size
 #define CELLHEIGH 80
 
 @property (nonatomic) NSArray *allKeys;

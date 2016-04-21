@@ -10,6 +10,10 @@
 
 @implementation SizeHelper
 
+//---------------------------
+// View Controller
+//---------------------------
+
 + (CGFloat)margin
 {
     return [UIScreen mainScreen].bounds.size.width * 0.01;
@@ -118,6 +122,10 @@
     return CGRectMake(5,5,20,20);
 }
 
+//---------------------------
+// BookMarkViewController
+//---------------------------
+
 // bookmarkView image
 + (CGRect)bmImageSizeWithParent:(UITableViewCell *)parent andImageSize:(int)size
 {
@@ -153,6 +161,10 @@
                                  parent.frame.size.width * 0.15,
                                  parent.frame.size.height * 0.6);
 }
+
+//---------------------------
+// InfoViewController
+//---------------------------
 
 // infoView name
 + (CGRect)ifRestaurantNameSize
@@ -198,15 +210,6 @@
     }
 }
 
-// infoView 'date' label
-//+ (CGRect)ifDateLabelSize
-//{
-//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
-//                      [UIScreen mainScreen].bounds.size.height * 0.5,
-//                      [UIScreen mainScreen].bounds.size.width * 0.3,
-//                      [UIScreen mainScreen].bounds.size.height * 0.05);
-//}
-
 // infoView 'date'
 + (CGRect)ifDateSize
 {
@@ -215,34 +218,6 @@
                       [UIScreen mainScreen].bounds.size.width * 0.98,
                       [UIScreen mainScreen].bounds.size.height * 0.05);
 }
-
-//// infoView 'address' label
-//+ (CGRect)ifAddressLabelSize
-//{
-//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
-//                      [UIScreen mainScreen].bounds.size.height * 0.55,
-//                      [UIScreen mainScreen].bounds.size.width * 0.3,
-//                      [UIScreen mainScreen].bounds.size.height * 0.05);
-//}
-//
-//// infoView 'address'
-//+ (CGRect)ifAddressSize
-//{
-//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.4,
-//                      [UIScreen mainScreen].bounds.size.height * 0.55,
-//                      [UIScreen mainScreen].bounds.size.width * 0.7,
-//                      [UIScreen mainScreen].bounds.size.height * 0.2);
-//}
-//
-//
-//// infoView 'website' label
-//+ (CGRect)ifWebsiteLabelSize
-//{
-//    return CGRectMake([UIScreen mainScreen].bounds.size.width * 0.05,
-//                      [UIScreen mainScreen].bounds.size.height * 0.75,
-//                      [UIScreen mainScreen].bounds.size.width * 0.3,
-//                      [UIScreen mainScreen].bounds.size.height * 0.05);
-//}
 
 // infoView 'comment' label
 + (CGRect)ifCommentLabelSize

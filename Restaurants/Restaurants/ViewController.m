@@ -21,15 +21,12 @@
 
 @property (nonatomic) NSMutableArray<UIImageView *> *reviewArr;
 @property (nonatomic) NSMutableArray<UIImageView *> *imageArr;
-@property (nonatomic) NSMutableDictionary *restaurantInfo;
 @property (nonatomic) MKMapView *map;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *location;
 @property (nonatomic) UILabel *nameLabel;
-@property (nonatomic) NSString *address;
 @property (nonatomic) NSString *comments;
 @property (nonatomic) NSInteger imgFlg;
-@property (nonatomic) UIView *confirmView;
 @property (nonatomic) UIImageView *defaultImage;
 @property (nonatomic) GMSPlacesClient *placesClient;
 @property (nonatomic) GMSPlacePicker *placePicker;
@@ -57,7 +54,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)createGoogleMapView
@@ -102,13 +98,12 @@
    
         [self getLocationNameWithLocation];
     }
-    
-    // update calling the function above on each 500 meters
 }
 
 - (void)setRegionInMap
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 400, 400);
+    // set the scope of google map
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.map.userLocation.coordinate, 200, 200);
     [self.map setRegion:region animated:YES];
 }
 
@@ -184,23 +179,35 @@
     UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"restaurant"]];
     iconView.frame = [SizeHelper annotationIconSize];
     annotationView.leftCalloutAccessoryView = iconView;
-    //annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
     return annotationView;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(nonnull MKAnnotationView *)view
 {
+    RestaurantsAnnotation *placeAnnotation = (RestaurantsAnnotation *)view.annotation;
+    
+    NSMutableDictionary *bookMarkInfo = [CommonHelper sharedInstance].bookMarkDic;
+    
+    if ([[bookMarkInfo allKeys] containsObject:placeAnnotation.placeID])
+    {
+        NSDictionary *dic= [bookMarkInfo objectForKey:placeAnnotation.placeID];
+        NSLog(@"%@", bookMarkInfo);
+        for (int i=0; i<3; i++)
+        {
+            self.reviewArr[i].image = [dic objectForKey:@"review"][i];
+            self.imageArr[i].image = [dic objectForKey:@"image"][i];
+        }
+    }
+    else
+    {
+        self.tempInfo = placeAnnotation.place;
+    }
+    
     self.nameLabel.text = view.annotation.title;
     self.nameLabel.textColor = [UIColor blackColor];
-    
-    RestaurantsAnnotation *placeAnnotation = (RestaurantsAnnotation *)view.annotation;
-    self.tempInfo = placeAnnotation.place;
-
     [self getLocationPicWithPlaceID:placeAnnotation.place.placeID];
 }
-
-
 
 - (void)createPicArea
 {
@@ -211,21 +218,22 @@
         [imageView setImage:[UIImage imageNamed:@"gallery"]];
         imageView.backgroundColor = [[ColorHelper lightGrayColor] colorWithAlphaComponent:0.5f];
         imageView.tag = i;
-        
-        UILabel *plusLabel = [self createPlusLabel];
-        plusLabel.tag = i;
-        plusLabel.center = CGPointMake(imageView.frame.size.width / 2, imageView.frame.size.height / 2);
         [self.imageArr addObject:imageView];
-        [imageView addSubview:plusLabel];
-        [self.view addSubview:imageView];
-        
-        imageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(plusLabelTap:)];
-        [imageView addGestureRecognizer:tapGesture];
         
         if (i == 0) {
             self.defaultImage = imageView;
         }
+        else
+        {
+            UILabel *plusLabel = [self createPlusLabel];
+            plusLabel.tag = i;
+            plusLabel.center = CGPointMake(imageView.frame.size.width / 2, imageView.frame.size.height / 2);
+            [imageView addSubview:plusLabel];
+            imageView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(plusLabelTap:)];
+            [imageView addGestureRecognizer:tapGesture];
+        }
+        [self.view addSubview:imageView];
     }
 }
 
