@@ -18,7 +18,6 @@
     {
         instance = [[CommonHelper alloc] initPrivate];
     }
-    
     return instance;
 }
 
@@ -35,7 +34,6 @@
     {
         self.bookMarkDic = [NSMutableDictionary dictionary];
     }
-    
     return self;
 }
 

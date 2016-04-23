@@ -103,7 +103,6 @@
 +(CGRect)nameLabelSize
 {
     CGFloat startHeight = [self imgMapStartHeight] + [self picImgSize] + [self margin];
-    
     return CGRectMake([self margin], startHeight, [UIScreen mainScreen].bounds.size.width * 0.98, [self labelSize]);
 }
 
@@ -195,7 +194,6 @@
 {
     CGFloat startWidth = [UIScreen mainScreen].bounds.size.width * 0.6;
     CGFloat startHeight = [self imgMapStartHeight] + [self iconSize] + [UIScreen mainScreen].bounds.size.height * 0.1 - [self reviewImgSize];
-    
     switch (index)
     {
         case 0:

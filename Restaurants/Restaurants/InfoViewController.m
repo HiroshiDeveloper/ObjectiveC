@@ -37,7 +37,6 @@
     [self createBar];
     
     NSMutableDictionary *bookMarkInfo = [CommonHelper sharedInstance].bookMarkDic;
-    NSLog(@"%@", bookMarkInfo);
     NSDictionary *dic= [bookMarkInfo objectForKey:self.placeID];
     GMSPlace *infoPlace = (GMSPlace *)[dic objectForKey:@"info"];
     
@@ -53,7 +52,6 @@
     [self createTextWithFrame:[SizeHelper ifAddressSize] andText:[[infoPlace.formattedAddress
                                                                     componentsSeparatedByString:@", "] componentsJoinedByString:@"\n"]];
     [self createURLTextWithFrame:[SizeHelper ifWebsiteSize] andURL:infoPlace.website];
-    
     
     for (int i=0; i<3; i++)
     {
