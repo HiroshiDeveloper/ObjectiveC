@@ -373,6 +373,7 @@
     }
 }
 
+// take a picture
 - (void)cameraItemPressed
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
