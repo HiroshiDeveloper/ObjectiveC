@@ -75,8 +75,10 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         //add code here for when you hit delete
         NSMutableDictionary *bookMarkInfo = [CommonHelper sharedInstance].bookMarkDic;
         [bookMarkInfo removeObjectForKey:self.allKeys[indexPath.row]];
