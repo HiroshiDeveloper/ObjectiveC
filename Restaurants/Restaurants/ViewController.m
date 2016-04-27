@@ -125,7 +125,6 @@
 {
     for(GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods)
     {
-        NSLog(@"%@", likelihood);
         for(NSString *type in likelihood.place.types)
         {
             if([type isEqualToString:@"bar"] ||
