@@ -1,4 +1,0 @@
-beezy-bee
-
-HTTPS	: https://github.com/cornerstonecollege/beezy-bee.git
-WEB		: http://cornerstonecollege.github.io/beezy-bee
