@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		68105F061E5D26C4000C8818 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F051E5D26C4000C8818 /* main.m */; };
+		68105F091E5D26C4000C8818 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F081E5D26C4000C8818 /* ViewController.m */; };
+		68105F0E1E5D26C4000C8818 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68105F0C1E5D26C4000C8818 /* Main.storyboard */; };
+		68105F191E5D26C4000C8818 /* LinkedinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F181E5D26C4000C8818 /* LinkedinTests.m */; };
+		68105F241E5D26C4000C8818 /* LinkedinUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F231E5D26C4000C8818 /* LinkedinUITests.m */; };
+		68105F341E5D29A1000C8818 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F331E5D29A1000C8818 /* Account.m */; };
+		68105F371E5D2F45000C8818 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F361E5D2F45000C8818 /* Profile.m */; };
+		68105F3A1E5D385A000C8818 /* FeedsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F391E5D385A000C8818 /* FeedsManager.m */; };
+		68105F3D1E5D3A87000C8818 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F3C1E5D3A87000C8818 /* Post.m */; };
+		68105F401E5D3B7B000C8818 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F3F1E5D3B7B000C8818 /* User.m */; };
+		68105F431E5D3BF2000C8818 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F421E5D3BF2000C8818 /* Attachment.m */; };
+		68105F461E5D3D4F000C8818 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F451E5D3D4F000C8818 /* Like.m */; };
+		68105F491E5D3D64000C8818 /* PostComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 68105F481E5D3D64000C8818 /* PostComment.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68105F151E5D26C4000C8818 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68105EF61E5D26C4000C8818 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68105EFD1E5D26C4000C8818;
+			remoteInfo = Linkedin;
+		};
+		68105F201E5D26C4000C8818 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68105EF61E5D26C4000C8818 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68105EFD1E5D26C4000C8818;
+			remoteInfo = Linkedin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		68105EFE1E5D26C4000C8818 /* Linkedin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linkedin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68105F051E5D26C4000C8818 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		68105F071E5D26C4000C8818 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		68105F081E5D26C4000C8818 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		68105F0D1E5D26C4000C8818 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		68105F0F1E5D26C4000C8818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68105F141E5D26C4000C8818 /* LinkedinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68105F181E5D26C4000C8818 /* LinkedinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkedinTests.m; sourceTree = "<group>"; };
+		68105F1A1E5D26C4000C8818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68105F1F1E5D26C4000C8818 /* LinkedinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68105F231E5D26C4000C8818 /* LinkedinUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkedinUITests.m; sourceTree = "<group>"; };
+		68105F251E5D26C4000C8818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68105F321E5D29A1000C8818 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		68105F331E5D29A1000C8818 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		68105F351E5D2F45000C8818 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		68105F361E5D2F45000C8818 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		68105F381E5D385A000C8818 /* FeedsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsManager.h; sourceTree = "<group>"; };
+		68105F391E5D385A000C8818 /* FeedsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsManager.m; sourceTree = "<group>"; };
+		68105F3B1E5D3A87000C8818 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		68105F3C1E5D3A87000C8818 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		68105F3E1E5D3B7B000C8818 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		68105F3F1E5D3B7B000C8818 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		68105F411E5D3BF2000C8818 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
+		68105F421E5D3BF2000C8818 /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment.m; sourceTree = "<group>"; };
+		68105F441E5D3D4F000C8818 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
+		68105F451E5D3D4F000C8818 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		68105F471E5D3D64000C8818 /* PostComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostComment.h; sourceTree = "<group>"; };
+		68105F481E5D3D64000C8818 /* PostComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostComment.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		68105EFB1E5D26C4000C8818 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68105F111E5D26C4000C8818 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68105F1C1E5D26C4000C8818 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		68105EF51E5D26C4000C8818 = {
+			isa = PBXGroup;
+			children = (
+				68105F001E5D26C4000C8818 /* Linkedin */,
+				68105F171E5D26C4000C8818 /* LinkedinTests */,
+				68105F221E5D26C4000C8818 /* LinkedinUITests */,
+				68105EFF1E5D26C4000C8818 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		68105EFF1E5D26C4000C8818 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68105EFE1E5D26C4000C8818 /* Linkedin.app */,
+				68105F141E5D26C4000C8818 /* LinkedinTests.xctest */,
+				68105F1F1E5D26C4000C8818 /* LinkedinUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68105F001E5D26C4000C8818 /* Linkedin */ = {
+			isa = PBXGroup;
+			children = (
+				68105F071E5D26C4000C8818 /* ViewController.h */,
+				68105F081E5D26C4000C8818 /* ViewController.m */,
+				68105F0C1E5D26C4000C8818 /* Main.storyboard */,
+				68105F0F1E5D26C4000C8818 /* Info.plist */,
+				68105F041E5D26C4000C8818 /* Supporting Files */,
+			);
+			path = Linkedin;
+			sourceTree = "<group>";
+		};
+		68105F041E5D26C4000C8818 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				68105F051E5D26C4000C8818 /* main.m */,
+				68105F321E5D29A1000C8818 /* Account.h */,
+				68105F331E5D29A1000C8818 /* Account.m */,
+				68105F351E5D2F45000C8818 /* Profile.h */,
+				68105F361E5D2F45000C8818 /* Profile.m */,
+				68105F381E5D385A000C8818 /* FeedsManager.h */,
+				68105F391E5D385A000C8818 /* FeedsManager.m */,
+				68105F3B1E5D3A87000C8818 /* Post.h */,
+				68105F3C1E5D3A87000C8818 /* Post.m */,
+				68105F3E1E5D3B7B000C8818 /* User.h */,
+				68105F3F1E5D3B7B000C8818 /* User.m */,
+				68105F411E5D3BF2000C8818 /* Attachment.h */,
+				68105F421E5D3BF2000C8818 /* Attachment.m */,
+				68105F441E5D3D4F000C8818 /* Like.h */,
+				68105F451E5D3D4F000C8818 /* Like.m */,
+				68105F471E5D3D64000C8818 /* PostComment.h */,
+				68105F481E5D3D64000C8818 /* PostComment.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		68105F171E5D26C4000C8818 /* LinkedinTests */ = {
+			isa = PBXGroup;
+			children = (
+				68105F181E5D26C4000C8818 /* LinkedinTests.m */,
+				68105F1A1E5D26C4000C8818 /* Info.plist */,
+			);
+			path = LinkedinTests;
+			sourceTree = "<group>";
+		};
+		68105F221E5D26C4000C8818 /* LinkedinUITests */ = {
+			isa = PBXGroup;
+			children = (
+				68105F231E5D26C4000C8818 /* LinkedinUITests.m */,
+				68105F251E5D26C4000C8818 /* Info.plist */,
+			);
+			path = LinkedinUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		68105EFD1E5D26C4000C8818 /* Linkedin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68105F281E5D26C4000C8818 /* Build configuration list for PBXNativeTarget "Linkedin" */;
+			buildPhases = (
+				68105EFA1E5D26C4000C8818 /* Sources */,
+				68105EFB1E5D26C4000C8818 /* Frameworks */,
+				68105EFC1E5D26C4000C8818 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Linkedin;
+			productName = Linkedin;
+			productReference = 68105EFE1E5D26C4000C8818 /* Linkedin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		68105F131E5D26C4000C8818 /* LinkedinTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68105F2B1E5D26C4000C8818 /* Build configuration list for PBXNativeTarget "LinkedinTests" */;
+			buildPhases = (
+				68105F101E5D26C4000C8818 /* Sources */,
+				68105F111E5D26C4000C8818 /* Frameworks */,
+				68105F121E5D26C4000C8818 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68105F161E5D26C4000C8818 /* PBXTargetDependency */,
+			);
+			name = LinkedinTests;
+			productName = LinkedinTests;
+			productReference = 68105F141E5D26C4000C8818 /* LinkedinTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		68105F1E1E5D26C4000C8818 /* LinkedinUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68105F2E1E5D26C4000C8818 /* Build configuration list for PBXNativeTarget "LinkedinUITests" */;
+			buildPhases = (
+				68105F1B1E5D26C4000C8818 /* Sources */,
+				68105F1C1E5D26C4000C8818 /* Frameworks */,
+				68105F1D1E5D26C4000C8818 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68105F211E5D26C4000C8818 /* PBXTargetDependency */,
+			);
+			name = LinkedinUITests;
+			productName = LinkedinUITests;
+			productReference = 68105F1F1E5D26C4000C8818 /* LinkedinUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		68105EF61E5D26C4000C8818 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Hiroshi;
+				TargetAttributes = {
+					68105EFD1E5D26C4000C8818 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					68105F131E5D26C4000C8818 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 68105EFD1E5D26C4000C8818;
+					};
+					68105F1E1E5D26C4000C8818 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 68105EFD1E5D26C4000C8818;
+					};
+				};
+			};
+			buildConfigurationList = 68105EF91E5D26C4000C8818 /* Build configuration list for PBXProject "Linkedin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 68105EF51E5D26C4000C8818;
+			productRefGroup = 68105EFF1E5D26C4000C8818 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				68105EFD1E5D26C4000C8818 /* Linkedin */,
+				68105F131E5D26C4000C8818 /* LinkedinTests */,
+				68105F1E1E5D26C4000C8818 /* LinkedinUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		68105EFC1E5D26C4000C8818 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68105F0E1E5D26C4000C8818 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68105F121E5D26C4000C8818 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68105F1D1E5D26C4000C8818 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		68105EFA1E5D26C4000C8818 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68105F431E5D3BF2000C8818 /* Attachment.m in Sources */,
+				68105F491E5D3D64000C8818 /* PostComment.m in Sources */,
+				68105F341E5D29A1000C8818 /* Account.m in Sources */,
+				68105F401E5D3B7B000C8818 /* User.m in Sources */,
+				68105F3D1E5D3A87000C8818 /* Post.m in Sources */,
+				68105F371E5D2F45000C8818 /* Profile.m in Sources */,
+				68105F091E5D26C4000C8818 /* ViewController.m in Sources */,
+				68105F061E5D26C4000C8818 /* main.m in Sources */,
+				68105F461E5D3D4F000C8818 /* Like.m in Sources */,
+				68105F3A1E5D385A000C8818 /* FeedsManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68105F101E5D26C4000C8818 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68105F191E5D26C4000C8818 /* LinkedinTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68105F1B1E5D26C4000C8818 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68105F241E5D26C4000C8818 /* LinkedinUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68105F161E5D26C4000C8818 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68105EFD1E5D26C4000C8818 /* Linkedin */;
+			targetProxy = 68105F151E5D26C4000C8818 /* PBXContainerItemProxy */;
+		};
+		68105F211E5D26C4000C8818 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68105EFD1E5D26C4000C8818 /* Linkedin */;
+			targetProxy = 68105F201E5D26C4000C8818 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		68105F0C1E5D26C4000C8818 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				68105F0D1E5D26C4000C8818 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		68105F261E5D26C4000C8818 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		68105F271E5D26C4000C8818 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		68105F291E5D26C4000C8818 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Linkedin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hiroshi.Linkedin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		68105F2A1E5D26C4000C8818 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Linkedin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hiroshi.Linkedin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		68105F2C1E5D26C4000C8818 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LinkedinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hiroshi.LinkedinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Linkedin.app/Contents/MacOS/Linkedin";
+			};
+			name = Debug;
+		};
+		68105F2D1E5D26C4000C8818 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LinkedinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hiroshi.LinkedinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Linkedin.app/Contents/MacOS/Linkedin";
+			};
+			name = Release;
+		};
+		68105F2F1E5D26C4000C8818 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LinkedinUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hiroshi.LinkedinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Linkedin;
+			};
+			name = Debug;
+		};
+		68105F301E5D26C4000C8818 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LinkedinUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hiroshi.LinkedinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Linkedin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		68105EF91E5D26C4000C8818 /* Build configuration list for PBXProject "Linkedin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68105F261E5D26C4000C8818 /* Debug */,
+				68105F271E5D26C4000C8818 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68105F281E5D26C4000C8818 /* Build configuration list for PBXNativeTarget "Linkedin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68105F291E5D26C4000C8818 /* Debug */,
+				68105F2A1E5D26C4000C8818 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		68105F2B1E5D26C4000C8818 /* Build configuration list for PBXNativeTarget "LinkedinTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68105F2C1E5D26C4000C8818 /* Debug */,
+				68105F2D1E5D26C4000C8818 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		68105F2E1E5D26C4000C8818 /* Build configuration list for PBXNativeTarget "LinkedinUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68105F2F1E5D26C4000C8818 /* Debug */,
+				68105F301E5D26C4000C8818 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 68105EF61E5D26C4000C8818 /* Project object */;
+}
