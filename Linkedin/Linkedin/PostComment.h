@@ -17,6 +17,6 @@
 @property (strong, nonatomic) NSDate* date;
 @property (strong, nonatomic) NSMutableArray<Attachment*>* attachment;
 
--(id)initWithCommentId:(int)commentId commentAuthor:(User*)commentAuthor date:(NSDate*)date attachments:(NSMutableArray<Attachment*>*)attachments;
+-(id)initWithCommentId:(int)commentId commentAuthor:(User*)commentAuthor date:(NSDate*)date attachments:(NSMutableArray<Attachment*>*)attachment;
 
 @end

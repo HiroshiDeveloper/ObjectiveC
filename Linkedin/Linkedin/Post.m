@@ -21,6 +21,7 @@
         self.likes = likes;
         self.comments = comments;
         self.type = type;
+        self.isReported = false;
     }
     return self;
 }
@@ -42,4 +43,16 @@
 {
 }
 
+-(void) reportThePost
+{
+    self.isReported = true;
+}
+
+-(void) show
+{
+    NSLog(@"I am here");
+}
+
 @end
+
+

@@ -10,4 +10,18 @@
 
 @implementation PostComment
 
+-(id)initWithCommentId:(int)commentId commentAuthor:(User*)commentAuthor date:(NSDate*)date attachments:(NSMutableArray<Attachment*>*)attachment
+{
+    self = [super init];
+    
+    if(self)
+    {
+        self.commentId = commentId;
+        self.commentAuthor = commentAuthor;
+        self.date = date;
+        self.attachment = attachment;
+    }
+    return  self;
+}
+
 @end

@@ -10,6 +10,9 @@
 
 @implementation FeedsManager
 
-
+-(NSArray*) loadFeedsForAccount:(Account*)account amount:(int)numberOfFeeds
+{
+    return NULL;
+}
 
 @end

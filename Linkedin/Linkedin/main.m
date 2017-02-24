@@ -34,10 +34,11 @@ int main(int argc, const char * argv[]) {
     for(int i=0; i<listOfPost.count; i++){
         Post* post = [listOfPost objectAtIndex:i];
         [post show];
-        //[post reportThePost];
+        [post reportThePost];
         User* user = [[User alloc] init];
-        //Like* like = [[Like alloc] initWithLikeId:1 likeOwner:user date:date];
-        //[post addLike:like];
+        NSDate* date = [NSDate date];
+        Like* like = [[Like alloc] initWithLikeId:1 likeOwner:user date:date];
+        [post addLike:like];
     }
     
     return NSApplicationMain(argc, argv);

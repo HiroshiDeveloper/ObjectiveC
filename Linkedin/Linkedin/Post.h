@@ -22,7 +22,7 @@
 @property int numberOfComments;
 @property (strong, nonatomic) NSMutableArray<Like*>* likes;
 @property (strong, nonatomic) NSMutableArray<PostComment*>* comments;
-@property BOOL flag;
+@property BOOL isReported;
 @property int type;
 
 // constructer
@@ -32,6 +32,7 @@
 -(void) addLike:(Like*)newLike;
 -(void) addComment:(PostComment*)newComment;
 -(void) editPostWithNameAttachments:(NSMutableArray<PostComment*>*)comments type:(int)type;
+-(void) reportThePost;
 -(void) show;
 
 @end
