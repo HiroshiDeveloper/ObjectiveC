@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		686D06BA1E65189500FBC22C /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 686D06B91E65189500FBC22C /* Circle.m */; };
+		686D06BD1E651AA300FBC22C /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = 686D06BC1E651AA300FBC22C /* Square.m */; };
+		686D06C01E651E6D00FBC22C /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 686D06BF1E651E6D00FBC22C /* Rectangle.m */; };
+		686D06C31E6521A400FBC22C /* Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = 686D06C21E6521A400FBC22C /* Shape.m */; };
 		68EDB03D1E56A5D800AB540C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EDB03C1E56A5D800AB540C /* main.m */; };
 		68EDB0401E56A5D800AB540C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EDB03F1E56A5D800AB540C /* AppDelegate.m */; };
 		68EDB0431E56A5D800AB540C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EDB0421E56A5D800AB540C /* ViewController.m */; };
@@ -36,6 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		686D06B81E65189500FBC22C /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
+		686D06B91E65189500FBC22C /* Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circle.m; sourceTree = "<group>"; };
+		686D06BB1E651AA300FBC22C /* Square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Square.h; sourceTree = "<group>"; };
+		686D06BC1E651AA300FBC22C /* Square.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Square.m; sourceTree = "<group>"; };
+		686D06BE1E651E6D00FBC22C /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		686D06BF1E651E6D00FBC22C /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
+		686D06C11E6521A400FBC22C /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
+		686D06C21E6521A400FBC22C /* Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shape.m; sourceTree = "<group>"; };
 		68EDB0381E56A5D800AB540C /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68EDB03C1E56A5D800AB540C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		68EDB03E1E56A5D800AB540C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,6 +135,14 @@
 				68EDB03C1E56A5D800AB540C /* main.m */,
 				68EDB06E1E56AA5500AB540C /* Sample.h */,
 				68EDB06F1E56AA5500AB540C /* Sample.m */,
+				686D06B81E65189500FBC22C /* Circle.h */,
+				686D06B91E65189500FBC22C /* Circle.m */,
+				686D06BB1E651AA300FBC22C /* Square.h */,
+				686D06BC1E651AA300FBC22C /* Square.m */,
+				686D06BE1E651E6D00FBC22C /* Rectangle.h */,
+				686D06BF1E651E6D00FBC22C /* Rectangle.m */,
+				686D06C11E6521A400FBC22C /* Shape.h */,
+				686D06C21E6521A400FBC22C /* Shape.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -278,8 +298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686D06BD1E651AA300FBC22C /* Square.m in Sources */,
+				686D06C01E651E6D00FBC22C /* Rectangle.m in Sources */,
 				68EDB0431E56A5D800AB540C /* ViewController.m in Sources */,
+				686D06C31E6521A400FBC22C /* Shape.m in Sources */,
 				68EDB0701E56AA5500AB540C /* Sample.m in Sources */,
+				686D06BA1E65189500FBC22C /* Circle.m in Sources */,
 				68EDB0401E56A5D800AB540C /* AppDelegate.m in Sources */,
 				68EDB03D1E56A5D800AB540C /* main.m in Sources */,
 			);
@@ -513,6 +537,7 @@
 				68EDB0671E56A5D800AB540C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		68EDB0681E56A5D800AB540C /* Build configuration list for PBXNativeTarget "TestTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +546,7 @@
 				68EDB06A1E56A5D800AB540C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		68EDB06B1E56A5D800AB540C /* Build configuration list for PBXNativeTarget "TestUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +555,7 @@
 				68EDB06D1E56A5D800AB540C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
