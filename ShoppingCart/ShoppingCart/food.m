@@ -10,7 +10,7 @@
 
 @implementation Food
 
--(id)initWithAmount:(int)amount productId:(int)productId name:(NSString*)name price:(int)price country:(NSString*)country calorie:(int)calorie size:(NSString*)size andIngredients:(NSMutableArray*)ingredients
+-(id)initWithAmount:(int)amount productId:(int)productId name:(NSString*)name price:(int)price country:(NSString*)country calorie:(int)calorie size:(int)size andIngredients:(NSMutableArray<NSString*>*)ingredients
 {
     self = [super initWithAmount:(int)amount productId:productId name:name price:price andCountry:country];
     if(self){
@@ -18,6 +18,8 @@
         self.size = size;
         self.ingredients = ingredients;
     }
+    [super setCost:amount*price*size];
+    
     return self;
 }
 

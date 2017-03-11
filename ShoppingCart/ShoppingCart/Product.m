@@ -19,8 +19,19 @@
         self.name = name;
         self.price = price;
         self.country = country;
+        self.totalCost = 0;
     }
     return self;
+}
+
+-(int)getCost
+{
+    return self.totalCost;
+}
+
+-(void)setCost:(int)cost
+{
+    self.totalCost = cost;
 }
 
 @end

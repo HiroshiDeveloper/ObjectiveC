@@ -12,9 +12,9 @@
 @interface Food : Product
 
 @property int calorie;
-@property (strong, nonatomic) NSString* size;
+@property int size;
 @property (strong, nonatomic) NSMutableArray* ingredients;
 
--(id)initWithAmount:(int)amount productId:(int)productId name:(NSString*)name price:(int)price country:(NSString*)country calorie:(int)calorie size:(NSString*)size andIngredients:(NSMutableArray*)ingredients;
+-(id)initWithAmount:(int)amount productId:(int)productId name:(NSString*)name price:(int)price country:(NSString*)country calorie:(int)calorie size:(int)size andIngredients:(NSMutableArray<NSString*>*)ingredients;
 
 @end

@@ -17,6 +17,8 @@
         self.isDiet = isDiet;
         self.size = size;
     }
+    [super setCost:amount*price];
+    
     return self;
 }
 

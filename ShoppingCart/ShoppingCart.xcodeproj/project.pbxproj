@@ -19,6 +19,7 @@
 		688789921E6E606600EE66C7 /* Cloth.m in Sources */ = {isa = PBXBuildFile; fileRef = 688789911E6E606600EE66C7 /* Cloth.m */; };
 		688789951E6E632500EE66C7 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 688789941E6E632500EE66C7 /* Product.m */; };
 		688789981E6E655000EE66C7 /* ShoppingCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 688789971E6E655000EE66C7 /* ShoppingCart.m */; };
+		68CEA54F1E72ED100006073C /* Material.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CEA54E1E72ED100006073C /* Material.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		688789941E6E632500EE66C7 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		688789961E6E655000EE66C7 /* ShoppingCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCart.h; sourceTree = "<group>"; };
 		688789971E6E655000EE66C7 /* ShoppingCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCart.m; sourceTree = "<group>"; };
+		68CEA54D1E72ED100006073C /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
+		68CEA54E1E72ED100006073C /* Material.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Material.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 				688789941E6E632500EE66C7 /* Product.m */,
 				688789961E6E655000EE66C7 /* ShoppingCart.h */,
 				688789971E6E655000EE66C7 /* ShoppingCart.m */,
+				68CEA54D1E72ED100006073C /* Material.h */,
+				68CEA54E1E72ED100006073C /* Material.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				688789981E6E655000EE66C7 /* ShoppingCart.m in Sources */,
 				688789921E6E606600EE66C7 /* Cloth.m in Sources */,
 				688789951E6E632500EE66C7 /* Product.m in Sources */,
+				68CEA54F1E72ED100006073C /* Material.m in Sources */,
 				688789891E6E5D9F00EE66C7 /* Drink.m in Sources */,
 				6887894D1E6E4EA900EE66C7 /* AppDelegate.m in Sources */,
 			);
@@ -528,6 +534,7 @@
 				688789741E6E4EA900EE66C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		688789751E6E4EA900EE66C7 /* Build configuration list for PBXNativeTarget "ShoppingCartTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +543,7 @@
 				688789771E6E4EA900EE66C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		688789781E6E4EA900EE66C7 /* Build configuration list for PBXNativeTarget "ShoppingCartUITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +552,7 @@
 				6887897A1E6E4EA900EE66C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

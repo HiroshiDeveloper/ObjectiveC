@@ -11,6 +11,13 @@
 
 @interface ShoppingCart : NSObject
 
--(NSMutableArray<Product*>*) addList:(NSMutableArray<Product*>*)list andProduct:(Product*) product;
+@property NSMutableArray<Product*>* list;
+@property int totalPrice;
+
+-(id)init;
+
+-(void)addProduct:(Product*) product;
+-(void)calculate;
+-(void)printOut;
 
 @end

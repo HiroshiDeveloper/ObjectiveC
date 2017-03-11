@@ -15,7 +15,7 @@
 		6808D8F21E5E88D0003608B0 /* Burger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808D8F11E5E88D0003608B0 /* Burger.m */; };
 		6808D8F51E5E8A0B003608B0 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808D8F41E5E8A0B003608B0 /* Employee.m */; };
 		6808D8F81E5E9471003608B0 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808D8F71E5E9471003608B0 /* Customer.m */; };
-		6887893E1E6E4B7200EE66C7 /* SpecialBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6887893D1E6E4B7200EE66C7 /* SpecialBurger.m */; };
+		68CEA5D01E730CF50006073C /* SpecialBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CEA5CF1E730CF50006073C /* SpecialBurger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,8 @@
 		6808D8F41E5E8A0B003608B0 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		6808D8F61E5E9471003608B0 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
 		6808D8F71E5E9471003608B0 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
-		6887893C1E6E4B7200EE66C7 /* SpecialBurger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpecialBurger.h; path = ../../../../SpecialBurger.h; sourceTree = "<group>"; };
-		6887893D1E6E4B7200EE66C7 /* SpecialBurger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpecialBurger.m; path = ../../../../SpecialBurger.m; sourceTree = "<group>"; };
+		68CEA5CE1E730CF50006073C /* SpecialBurger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialBurger.h; sourceTree = "<group>"; };
+		68CEA5CF1E730CF50006073C /* SpecialBurger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialBurger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +125,8 @@
 				6808D8F41E5E8A0B003608B0 /* Employee.m */,
 				6808D8F61E5E9471003608B0 /* Customer.h */,
 				6808D8F71E5E9471003608B0 /* Customer.m */,
-				6887893C1E6E4B7200EE66C7 /* SpecialBurger.h */,
-				6887893D1E6E4B7200EE66C7 /* SpecialBurger.m */,
+				68CEA5CE1E730CF50006073C /* SpecialBurger.h */,
+				68CEA5CF1E730CF50006073C /* SpecialBurger.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 			files = (
 				6808D8C51E5E8358003608B0 /* ViewController.m in Sources */,
 				6808D8F51E5E8A0B003608B0 /* Employee.m in Sources */,
-				6887893E1E6E4B7200EE66C7 /* SpecialBurger.m in Sources */,
+				68CEA5D01E730CF50006073C /* SpecialBurger.m in Sources */,
 				6808D8F21E5E88D0003608B0 /* Burger.m in Sources */,
 				6808D8C21E5E8358003608B0 /* main.m in Sources */,
 				6808D8F81E5E9471003608B0 /* Customer.m in Sources */,
