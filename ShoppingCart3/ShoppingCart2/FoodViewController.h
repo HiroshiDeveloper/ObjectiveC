@@ -15,14 +15,9 @@
 
 @end
 
-@interface FoodViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *foodId;
-@property (weak, nonatomic) IBOutlet UITextField *foodName;
-@property (weak, nonatomic) IBOutlet UITextField *foodPrice;
-@property (weak, nonatomic) IBOutlet UITextField *foodCalorie;
-@property (weak, nonatomic) IBOutlet UITextField *foodSize;
-@property (weak, nonatomic) IBOutlet UITextField *foodIngredients;
-@property (weak, nonatomic) IBOutlet UITextField *foodMadeInCountry;
+@interface FoodViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *foodTableView;
 @property (weak, nonatomic) id<FoodViewDelegate> delegate;
 
 - (IBAction)doneButton:(UIButton *)sender;

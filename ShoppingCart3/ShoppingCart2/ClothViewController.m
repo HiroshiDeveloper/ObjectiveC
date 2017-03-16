@@ -43,11 +43,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)doneButton:(UIButton *)sender {
-    
+- (IBAction)doneButton:(UIButton *)sender
+{
+    if([[self getCellDataRow:2] intValue] == 0){
+        return;
+    }
     // getCellDataRow
-    // 1:clothId, 2:clothName, 3:clothPrice, 4:clothMadeInCountry
-    // 5:clothMaterialsName, 6:clothMaterialsCode
+    // 0:clothId, 1:clothName, 2:clothPrice, 3:clothMadeInCountry
+    // 4:clothMaterialsName, 5:clothMaterialsCode
     NSArray<NSString*>* code = [[self getCellDataRow:5] componentsSeparatedByString:@","];
     NSArray<NSString*>* name = [[self getCellDataRow:4]  componentsSeparatedByString:@","];
     if(code.count != name.count){
@@ -61,7 +64,7 @@
         [materials addObject:material];
     }
     
-    Cloth* cloth = [[Cloth alloc] initWithAmount:1 productId:[[self getCellDataRow:0]  intValue] name:[self getCellDataRow:1]  price:[[self getCellDataRow:2]  intValue] country:[self getCellDataRow:3] andMaterials:materials];
+    Cloth* cloth = [[Cloth alloc] initWithAmount:1 productId:[[self getCellDataRow:0] intValue] name:[self getCellDataRow:1] price:[[self getCellDataRow:2] intValue] country:[self getCellDataRow:3] andMaterials:materials];
     
     [self.delegate addItem:cloth];
     [self dismissViewControllerAnimated:YES completion:nil];

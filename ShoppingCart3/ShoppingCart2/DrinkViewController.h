@@ -15,15 +15,10 @@
 
 @end
 
-@interface DrinkViewController : UIViewController
+@interface DrinkViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITextField *drinkId;
-@property (weak, nonatomic) IBOutlet UITextField *drinkName;
-@property (weak, nonatomic) IBOutlet UITextField *drinkPrice;
-@property (weak, nonatomic) IBOutlet UITextField *drinkMadeInCountry;
-@property (weak, nonatomic) IBOutlet UITextField *isDrinkDiet;
-@property (weak, nonatomic) IBOutlet UITextField *drinkSize;
 @property (weak, nonatomic) id<DrinkViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITableView *drinkTableView;
 
 - (IBAction)doneButton:(UIButton *)sender;
 - (IBAction)cancelButton:(UIButton *)sender;

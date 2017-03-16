@@ -22,6 +22,8 @@
 		68EC3DBB1E76070900864A1A /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EC3DBA1E76070900864A1A /* FoodViewController.m */; };
 		68EFADA31E78452500E8032F /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EFADA21E78452500E8032F /* MainTableViewCell.m */; };
 		68EFBAC11E798FA9004A7C7A /* ClothTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EFBAC01E798FA9004A7C7A /* ClothTableViewCell.m */; };
+		68F06A981E79CCF1001005A2 /* DrinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F06A971E79CCF1001005A2 /* DrinkTableViewCell.m */; };
+		68F06A9B1E7A0D0D001005A2 /* FoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F06A9A1E7A0D0D001005A2 /* FoodTableViewCell.m */; };
 		68F0E42F1E74F66300C13DFE /* Cloth.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0E41E1E74F66300C13DFE /* Cloth.m */; };
 		68F0E4311E74F66300C13DFE /* Drink.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0E4221E74F66300C13DFE /* Drink.m */; };
 		68F0E4331E74F66300C13DFE /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0E4261E74F66300C13DFE /* Food.m */; };
@@ -79,6 +81,10 @@
 		68EFADA21E78452500E8032F /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
 		68EFBABF1E798FA9004A7C7A /* ClothTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothTableViewCell.h; sourceTree = "<group>"; };
 		68EFBAC01E798FA9004A7C7A /* ClothTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothTableViewCell.m; sourceTree = "<group>"; };
+		68F06A961E79CCF1001005A2 /* DrinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkTableViewCell.h; sourceTree = "<group>"; };
+		68F06A971E79CCF1001005A2 /* DrinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkTableViewCell.m; sourceTree = "<group>"; };
+		68F06A991E7A0D0D001005A2 /* FoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTableViewCell.h; sourceTree = "<group>"; };
+		68F06A9A1E7A0D0D001005A2 /* FoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTableViewCell.m; sourceTree = "<group>"; };
 		68F0E41D1E74F66300C13DFE /* Cloth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloth.h; sourceTree = "<group>"; };
 		68F0E41E1E74F66300C13DFE /* Cloth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cloth.m; sourceTree = "<group>"; };
 		68F0E4211E74F66300C13DFE /* Drink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drink.h; sourceTree = "<group>"; };
@@ -152,14 +158,19 @@
 				68EFBAC01E798FA9004A7C7A /* ClothTableViewCell.m */,
 				68EC3DB91E76070900864A1A /* FoodViewController.h */,
 				68EC3DBA1E76070900864A1A /* FoodViewController.m */,
+				68F06A991E7A0D0D001005A2 /* FoodTableViewCell.h */,
+				68F06A9A1E7A0D0D001005A2 /* FoodTableViewCell.m */,
 				68EC3DB61E7606B900864A1A /* DrinkViewController.h */,
 				68EC3DB71E7606B900864A1A /* DrinkViewController.m */,
+				68F06A961E79CCF1001005A2 /* DrinkTableViewCell.h */,
+				68F06A971E79CCF1001005A2 /* DrinkTableViewCell.m */,
 				68D828F01E76DDB10076499F /* ItemViewController.h */,
 				68D828F11E76DDB10076499F /* ItemViewController.m */,
 				68D828F31E76E0010076499F /* ItemTableViewCell.h */,
 				68D828F41E76E0010076499F /* ItemTableViewCell.m */,
 				68F0E41D1E74F66300C13DFE /* Cloth.h */,
 				68F0E41E1E74F66300C13DFE /* Cloth.m */,
+				68F0E4211E74F66300C13DFE /* Drink.h */,
 				68F0E4221E74F66300C13DFE /* Drink.m */,
 				68ED42C01E762CBC00300CB1 /* Food.h */,
 				68F0E4261E74F66300C13DFE /* Food.m */,
@@ -167,7 +178,6 @@
 				68F0E42A1E74F66300C13DFE /* Material.m */,
 				68F0E42B1E74F66300C13DFE /* Product.h */,
 				68F0E42C1E74F66300C13DFE /* Product.m */,
-				68F0E4211E74F66300C13DFE /* Drink.h */,
 				68F0E42D1E74F66300C13DFE /* ShoppingCart.h */,
 				68F0E42E1E74F66300C13DFE /* ShoppingCart.m */,
 				68DF72C11E7479F100242305 /* Main.storyboard */,
@@ -340,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68EC3DAF1E76048C00864A1A /* ViewController.m in Sources */,
+				68F06A981E79CCF1001005A2 /* DrinkTableViewCell.m in Sources */,
 				68D828F21E76DDB10076499F /* ItemViewController.m in Sources */,
 				68F0E4331E74F66300C13DFE /* Food.m in Sources */,
 				68EC3DB81E7606B900864A1A /* DrinkViewController.m in Sources */,
@@ -347,6 +358,7 @@
 				68F0E4361E74F66300C13DFE /* Product.m in Sources */,
 				68F0E4351E74F66300C13DFE /* Material.m in Sources */,
 				68F0E42F1E74F66300C13DFE /* Cloth.m in Sources */,
+				68F06A9B1E7A0D0D001005A2 /* FoodTableViewCell.m in Sources */,
 				68F0E4311E74F66300C13DFE /* Drink.m in Sources */,
 				68EFADA31E78452500E8032F /* MainTableViewCell.m in Sources */,
 				68DF72BD1E7479F100242305 /* AppDelegate.m in Sources */,
